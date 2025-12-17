@@ -8,7 +8,7 @@ import {
   useLocation,
   useRouteError,
 } from 'react-router';
-
+import '../i18n';
 import { useButton } from '@react-aria/button';
 import {
   useCallback,

@@ -1,0 +1,91 @@
+{
+  "home": {
+    "hero": {
+      "title": "037 Tecnologia e Sicurezza",
+      "subtitle": "Oltre trenta anni di esperienza nell'innovazione\nal servizio della sicurezza",
+      "ctaMore": "Scopri di più",
+      "ctaContact": "Contattaci"
+    },
+    "about": {
+      "title": "Chi Siamo",
+      "text": "Oltre vent'anni di esperienza nel mondo della sicurezza, la continua ricerca di materiali e soluzioni innovative, l'impegno nell'analisi e controllo territoriale: questi i fondamenti di 037 Tecnologia e Sicurezza.",
+      "link": "Leggi la nostra storia"
+    },
+    "solutions": {
+      "title": "Le Nostre Soluzioni",
+      "guardian": {
+        "title": "GUARDIAN X-TEN",
+        "description": "Stazione tecnologica mobile con colonna telescopica fino a 13m di altezza. Equipaggiata con telecamere termiche intelligenti, radar e sistemi di illuminazione avanzati.",
+        "features": {
+          "radar": "Radar Integrato",
+          "thermal": "Visione Termica",
+          "power": "Autoalimentato",
+          "height": "Altezza 13m"
+        },
+        "link": "Scopri Guardian X-TEN"
+      },
+      "nrg": {
+        "title": "GUARDIAN NRG",
+        "description": "Centrale di controllo shelter da 20ft./40ft. abitabile. Coordina sistemi multi-Guardian per estendere l'area di sorveglianza con un solo operatore.",
+        "points": {
+          "one": "Controllo centralizzato multi-Guardian",
+          "two": "Shelter abitabile 20ft./40ft.",
+          "three": "Gestione con singolo operatore"
+        },
+        "link": "Scopri Guardian NRG"
+      }
+    },
+    "applications": {
+      "title": "Applicazioni",
+      "civil": {
+        "title": "Civili",
+        "text": "Protezione di infrastrutture critiche, siti industriali, eventi pubblici e zone sensibili."
+      },
+      "military": {
+        "title": "Militari",
+        "text": "Protezione di basi operative, zone di conflitto e missioni tattiche."
+      },
+      "link": "Vedi tutti i dettagli"
+    },
+    "cta": {
+      "title": "Pronto a proteggere il tuo territorio?",
+      "text": "Contattaci per una consulenza personalizzata e scopri come le nostre soluzioni possono garantire la massima sicurezza per le tue esigenze.",
+      "button": "Contattaci Ora"
+    },
+    "footer": {
+      "tagline": "Leader nell'innovazione per la sicurezza perimetrale",
+      "quickLinks": "Link Rapidi",
+      "contacts": "Contatti",
+      "rights": "Tutti i diritti riservati."
+    },
+    "header": {
+      "about": "Chi Siamo",
+      "application": "Applicazioni",
+      "contact": "Contatti"
+    }
+  },
+  "about": {
+    "heroTitle": "Chi Siamo",
+    "heroSubtitle": "Oltre vent'anni di esperienza nell'innovazione al servizio della sicurezza",
+
+    "p1": "Oltre vent'anni di esperienza nel mondo della sicurezza, la continua ricerca di materiali e soluzioni innovative, l'impegno nell'analisi e controllo territoriale: questi i fondamenti di 037 Tecnologia e Sicurezza.",
+    "p2": "Le tecnologie applicate alla ricerca sono alla base di Guardian, soluzione brevettata e unica nel suo genere: dispositivi alimentati o autoalimentati, dinamici, flessibili e completamente autosufficienti, prodotti in due versioni: Guardian e Guardian X-Ten.",
+    "p3": "037 Tecnologia e Sicurezza si pone oggi tra i leader mondiali nello sviluppo di progetti ad-hoc per una clientela di alto profilo, con soluzioni tecniche innovative che ridefiniscono gli standard della sicurezza perimetrale.",
+
+    "valuesTitle": "I Nostri Valori",
+
+    "experienceTitle": "Esperienza",
+    "experienceText": "Oltre vent'anni nel settore della sicurezza ci permettono di offrire soluzioni consolidate e affidabili.",
+
+    "innovationTitle": "Innovazione",
+    "innovationText": "Ricerca costante di materiali e tecnologie all'avanguardia per soluzioni sempre più efficaci.",
+
+    "reliabilityTitle": "Affidabilità",
+    "reliabilityText": "Sistemi brevettati e testati che garantiscono la massima sicurezza in ogni condizione operativa.",
+
+    "ctaTitle": "Scopri le Nostre Soluzioni",
+    "ctaText": "Esplora Guardian e Matrix, le nostre tecnologie brevettate per la sicurezza perimetrale.",
+    "ctaGuardian": "Scopri Guardian",
+    "ctaMatrix": "Scopri Matrix"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "home": {
+    "hero": {
+      "title": "037 Technology & Security",
+      "subtitle": "Over thirty years of experience in innovation\nserving security",
+      "ctaMore": "Learn more",
+      "ctaContact": "Contact us"
+    },
+    "about": {
+      "title": "About Us",
+      "text": "Over twenty years of experience in the security sector, continuous research into innovative materials and solutions, and a strong commitment to territorial analysis and control: these are the foundations of 037 Technology & Security.",
+      "link": "Read our story"
+    },
+    "solutions": {
+      "title": "Our Solutions",
+      "guardian": {
+        "title": "GUARDIAN X-TEN",
+        "description": "Mobile technological station with telescopic mast up to 13m high. Equipped with intelligent thermal cameras, radar and advanced lighting systems.",
+        "features": {
+          "radar": "Integrated Radar",
+          "thermal": "Thermal Vision",
+          "power": "Self-powered",
+          "height": "13m Height"
+        },
+        "link": "Discover Guardian X-TEN"
+      },
+      "nrg": {
+        "title": "GUARDIAN NRG",
+        "description": "Habitable 20ft./40ft. shelter control center. Coordinates multi-Guardian systems to extend surveillance coverage with a single operator.",
+        "points": {
+          "one": "Centralized multi-Guardian control",
+          "two": "Habitable 20ft./40ft. shelter",
+          "three": "Single-operator management"
+        },
+        "link": "Discover Guardian NRG"
+      }
+    },
+    "applications": {
+      "title": "Applications",
+      "civil": {
+        "title": "Civil",
+        "text": "Protection of critical infrastructures, industrial sites, public events and sensitive areas."
+      },
+      "military": {
+        "title": "Military",
+        "text": "Protection of operational bases, conflict zones and tactical missions."
+      },
+      "link": "View all details"
+    },
+    "cta": {
+      "title": "Ready to protect your territory?",
+      "text": "Contact us for a personalized consultation and discover how our solutions can ensure maximum security for your needs.",
+      "button": "Contact Us Now"
+    },
+    "footer": {
+      "tagline": "Leaders in perimeter security innovation",
+      "quickLinks": "Quick Links",
+      "contacts": "Contacts",
+      "rights": "All rights reserved."
+    },
+    "header": {
+      "about": "About us",
+      "application": "Application",
+      "contact": "Contact us"
+    }
+  },
+  "about": {
+    "heroTitle": "About Us",
+    "heroSubtitle": "Over twenty years of innovation in security",
+
+    "p1": "Over twenty years of experience in the security sector, continuous research into innovative materials and solutions, and a strong commitment to territorial analysis and control form the foundations of 037 Technology and Security.",
+    "p2": "Research-driven technologies are at the core of Guardian, a patented and unique solution: powered or self-powered devices that are dynamic, flexible, and fully autonomous, produced in two versions: Guardian and Guardian X-Ten.",
+    "p3": "Today, 037 Technology and Security stands among the global leaders in the development of bespoke projects for high-profile clients, delivering innovative technical solutions that redefine the standards of perimeter security.",
+
+    "valuesTitle": "Our Values",
+
+    "experienceTitle": "Experience",
+    "experienceText": "Over twenty years in the security sector allow us to deliver proven and reliable solutions.",
+
+    "innovationTitle": "Innovation",
+    "innovationText": "Continuous research into cutting-edge materials and technologies for increasingly effective solutions.",
+
+    "reliabilityTitle": "Reliability",
+    "reliabilityText": "Patented and field-tested systems ensuring maximum security in every operational condition.",
+
+    "ctaTitle": "Discover Our Solutions",
+    "ctaText": "Explore Guardian and Matrix, our patented technologies for perimeter security.",
+    "ctaGuardian": "Discover Guardian",
+    "ctaMatrix": "Discover Matrix"
+  }
+}
