@@ -6,17 +6,14 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import './app/global.css';
 
 // COMPONENTI
-// Assicurati che Header.jsx sia dentro src/components/
 import Header from './components/Header';
-// Assicurati di aver creato il file ScrollToTop.jsx nel PASSO 1
 import ScrollToTop from './components/ScrollToTop';
 
 // PAGINA 404
-// Percorso preso dal tuo codice originale
 import NotFound from './app/__create/not-found.tsx';
 
 // --- LAYOUT ---
-// L'Header sta SOLO qui
+// Questo layout contiene l'Header. Lo useremo solo per le pagine "normali".
 const Layout = () => {
     return (
         <div className="main-wrapper">
@@ -31,14 +28,13 @@ const Layout = () => {
 };
 
 function AppRoutes() {
-    // Cerca sia file .jsx che .tsx
+    // Generazione automatica rotte
     const pages = import.meta.glob('./app/**/page.{jsx,tsx}', { eager: true });
 
     const routes = Object.keys(pages).map((path) => {
         const name = path
-            .replace(/^\.\/app/, '')           // Rimuove ./app
-            .replace(/\/page\.(jsx|tsx)$/, ''); // Rimuove /page.jsx o /page.tsx
-
+            .replace(/^\.\/app/, '')
+            .replace(/\/page\.(jsx|tsx)$/, '');
         const routePath = name === '' ? '/' : name;
 
         // @ts-ignore
@@ -50,13 +46,15 @@ function AppRoutes() {
 
     return (
         <Routes>
+            {/* GRUPPO 1: Pagine CON Header (dentro Layout) */}
             <Route element={<Layout />}>
-                {/* 1. Rotte generate automaticamente */}
                 {routes}
-
-                {/* 2. Rotta 404 */}
-                <Route path="*" element={<NotFound />} />
+                {/* Aggiungi qui eventuali altre pagine che DEVONO avere l'header */}
             </Route>
+
+            {/* GRUPPO 2: Pagine SENZA Header (fuori Layout) */}
+            {/* La 404 sta qui fuori, quindi sarà "nuda" (solo il suo contenuto) */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
@@ -64,7 +62,6 @@ function AppRoutes() {
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <BrowserRouter>
-            {/* Questo risolve il problema dello scroll e dell'header */}
             <ScrollToTop />
             <AppRoutes />
         </BrowserRouter>

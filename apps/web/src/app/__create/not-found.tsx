@@ -64,7 +64,7 @@ export default function SecurityNotFoundUnified() {
 
   return (
       <div className={`min-h-screen ${theme.bg} ${theme.text} font-sans relative overflow-hidden flex flex-col items-center justify-center select-none transition-colors duration-500`}>
-        <Header />
+
 
         {/* --- LAYER 1: SFONDO & CRT SCANLINE --- */}
         <div className="absolute inset-0 z-0 pointer-events-none">
