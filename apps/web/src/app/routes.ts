@@ -1,127 +1,72 @@
-import { readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 import {
 	type RouteConfigEntry,
 	index,
 	route,
-	// @ts-ignore
 } from '@react-router/dev/routes';
 
-// @ts-ignore
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+// ============================================================================
+// FIX CRITICO: Usa import.meta.glob invece di node:fs
+// Vite sostituirà questo con la lista dei file statici durante la build.
+// Il parametro { eager: false } è default, restituisce i percorsi come chiavi.
+// ============================================================================
+const pages = import.meta.glob('./**/page.jsx');
 
-type Tree = {
-	path: string;
-	children: Tree[];
-	hasPage: boolean;
-	isParam: boolean;
-	paramName: string;
-	isCatchAll: boolean;
-};
-
-function buildRouteTree(dir: string, basePath = ''): Tree {
-	const files = readdirSync(dir);
-	const node: Tree = {
-		path: basePath,
-		children: [],
-		hasPage: false,
-		isParam: false,
-		isCatchAll: false,
-		paramName: '',
-	};
-
-	// Check if the current directory name indicates a parameter
-	const dirName = basePath.split('/').pop();
-	if (dirName?.startsWith('[') && dirName.endsWith(']')) {
-		node.isParam = true;
-		const paramName = dirName.slice(1, -1);
-
-		// Check if it's a catch-all parameter (e.g., [...ids])
-		if (paramName.startsWith('...')) {
-			node.isCatchAll = true;
-			node.paramName = paramName.slice(3); // Remove the '...' prefix
-		} else {
-			node.paramName = paramName;
-		}
-	}
-
-	for (const file of files) {
-		const filePath = join(dir, file);
-		const stat = statSync(filePath);
-
-		if (stat.isDirectory()) {
-			const childPath = basePath ? `${basePath}/${file}` : file;
-			const childNode = buildRouteTree(filePath, childPath);
-			node.children.push(childNode);
-		} else if (file === 'page.jsx') {
-			node.hasPage = true;
-    }
-	}
-
-	return node;
-}
-
-function generateRoutes(node: Tree): RouteConfigEntry[] {
+function generateRoutes(): RouteConfigEntry[] {
 	const routes: RouteConfigEntry[] = [];
 
-	if (node.hasPage) {
-		const componentPath =
-			node.path === '' ? `./${node.path}page.jsx` : `./${node.path}/page.jsx`;
+	// Iteriamo su tutte le chiavi trovate (es: "./page.jsx", "./chi-siamo/page.jsx")
+	for (const path in pages) {
 
-		if (node.path === '') {
-			routes.push(index(componentPath));
-		} else {
-			// Handle parameter routes
-			let routePath = node.path;
+		// Pulizia del path per trasformarlo in URL
+		// 1. Rimuove "./" all'inizio
+		// 2. Rimuove "/page.jsx" alla fine
+		// 3. Rimuove "page.jsx" se è nella root
+		let routePath = path
+			.replace(/^\.\//, '')
+			.replace(/\/page\.jsx$/, '')
+			.replace(/^page\.jsx$/, '');
 
-			// Replace all parameter segments in the path
-			const segments = routePath.split('/');
-			const processedSegments = segments.map((segment) => {
-				if (segment.startsWith('[') && segment.endsWith(']')) {
-					const paramName = segment.slice(1, -1);
-
-					// Handle catch-all parameters (e.g., [...ids] becomes *)
-					if (paramName.startsWith('...')) {
-						return '*'; // React Router's catch-all syntax
-					}
-					// Handle optional parameters (e.g., [[id]] becomes :id?)
-					if (paramName.startsWith('[') && paramName.endsWith(']')) {
-						return `:${paramName.slice(1, -1)}?`;
-					}
-					// Handle regular parameters (e.g., [id] becomes :id)
-					return `:${paramName}`;
-				}
-				return segment;
-			});
-
-			routePath = processedSegments.join('/');
-			routes.push(route(routePath, componentPath));
+		// Se routePath è vuoto, significa che è la pagina Home (root)
+		if (routePath === '') {
+			// "index" crea la rotta "/"
+			routes.push(index(path));
+			continue;
 		}
+
+		// Gestione Parametri Dinamici (es. [id], [...slug])
+		// Trasforma la sintassi dei file in sintassi URL React Router
+		const segments = routePath.split('/');
+		const processedSegments = segments.map((segment) => {
+			// Se inizia con [ e finisce con ]
+			if (segment.startsWith('[') && segment.endsWith(']')) {
+				const paramName = segment.slice(1, -1);
+
+				// Catch-all: [...ids] diventa *
+				if (paramName.startsWith('...')) {
+					return '*';
+				}
+				// Opzionale: [[id]] diventa :id?
+				if (paramName.startsWith('[') && paramName.endsWith(']')) {
+					return `:${paramName.slice(1, -1)}?`;
+				}
+				// Standard: [id] diventa :id
+				return `:${paramName}`;
+			}
+			return segment;
+		});
+
+		// Ricostruiamo l'URL finale
+		const finalUrl = processedSegments.join('/');
+
+		// Aggiungiamo la rotta alla configurazione
+		// Primo argomento: URL (es. "chi-siamo"), Secondo: percorso file relativo
+		routes.push(route(finalUrl, path));
 	}
 
-	for (const child of node.children) {
-		routes.push(...generateRoutes(child));
-	}
+	// Aggiungi la pagina 404 personalizzata alla fine
+	routes.push(route('*?', './__create/not-found.tsx'));
 
 	return routes;
 }
-// @ts-ignore
-if (import.meta.env.DEV) {
-	// @ts-ignore
-	import.meta.glob('./**/page.jsx', {});
-	// @ts-ignore
-	if (import.meta.hot) {
-		// @ts-ignore
-		import.meta.hot.accept((newSelf) => {
-			// @ts-ignore
-			import.meta.hot?.invalidate();
-		});
-	}
-}
-const tree = buildRouteTree(__dirname);
-const notFound = route('*?', './__create/not-found.tsx');
-const routes = [...generateRoutes(tree), notFound];
 
-export default routes;
+export default generateRoutes();

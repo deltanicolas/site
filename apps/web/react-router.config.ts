@@ -1,14 +1,13 @@
 import type { Config } from '@react-router/dev/config';
 
 export default {
-	// Cartella dove risiede l'app
-	appDirectory: './src/app',
-
-	// DISABILITA SSR: Fondamentale per generare un sito statico (SPA)
+	appDirectory: "src/app",
 	ssr: false,
+	// Usa "/" se sei in locale o su dominio root.
+	basename: "/",
 
-	// Se vuoi generare file HTML fisici per ogni pagina, elenca le rotte qui:
+	// AGGIUNGI QUESTO: Forza la creazione di index.html
 	async prerender() {
-		return ["/", "/chi-siamo", "/contatti", "/applicazioni", "/guardian", "/matrix"];
+		return ["/"];
 	},
 } satisfies Config;

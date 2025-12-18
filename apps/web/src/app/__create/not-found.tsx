@@ -1,43 +1,24 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useSpring, useMotionValue } from "framer-motion";
-import { ShieldAlert, ArrowLeft, Radar, Zap } from "lucide-react";
+import { Eye, ArrowLeft, MapPin, ShieldCheck, ScanFace } from "lucide-react";
 import Header from "../../components/Header";
 
 export default function SecurityNotFound() {
   const [time, setTime] = useState("");
-  // Riferimento per l'oggetto audio
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Mouse tracking con fisica "Spring" per un movimento fluido
+  // --- FISICA DEL "GUARDIAN AI TRACKER" ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 30, stiffness: 200 };
+  // Spring leggermente più rigido per dare l'idea di un servo-motore di telecamera
+  const springConfig = { damping: 30, stiffness: 150 };
   const sx = useSpring(mouseX, springConfig);
   const sy = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // --- LOGICA AUDIO ALLARME ---
-    // Carichiamo un suono di allarme elettronico/tech
-    const alarmSoundUrl = "https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3";
-    audioRef.current = new Audio(alarmSoundUrl);
-    audioRef.current.volume = 0.2; // Volume al 20%
-    audioRef.current.loop = false; // Solo un segnale di attivazione (cambia in true per loop continuo)
-
-    const playAlarm = () => {
-      if (audioRef.current) {
-        audioRef.current.play().catch((err) => {
-          console.log("Audio bloccato dal browser: richiede interazione utente.");
-        });
-      }
-    };
-
-    // Esegui l'allarme dopo un brevissimo delay dall'ingresso
-    const audioTimeout = setTimeout(playAlarm, 400);
-
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -52,98 +33,136 @@ export default function SecurityNotFound() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearInterval(timer);
-      clearTimeout(audioTimeout);
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
     };
   }, [mouseX, mouseY]);
 
   return (
-      <div className="min-h-screen bg-slate-950 text-white font-sans relative overflow-hidden flex flex-col items-center justify-center select-none selection:bg-blue-500 selection:text-white">
+      <div className="min-h-screen bg-slate-950 text-white font-sans relative overflow-hidden flex flex-col items-center justify-center select-none">
         <Header />
 
-        {/* --- LAYER 1: GRID TECNICA --- */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f61a_1px,transparent_1px),linear-gradient(to_bottom,#3b82f61a_1px,transparent_1px)] bg-[size:60px_60px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.1),transparent_70%)]" />
+        {/* --- LAYER 1: SFONDO & CRT SCANLINE --- */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Griglia millimetrata tecnica */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:50px_50px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_100%)]" />
+
+          {/* LINEA DI SCANSIONE (CRT EFFECT) */}
+          <motion.div
+              initial={{ top: "-10%" }}
+              animate={{ top: "110%" }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute left-0 w-full h-32 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent z-10 pointer-events-none"
+          />
         </div>
 
-        {/* --- LAYER 2: HUD DI SORVEGLIANZA (CORNER ANGLES) --- */}
-        <div className="absolute inset-0 p-10 flex flex-col justify-between pointer-events-none z-20">
-          <div className="flex justify-between items-start">
-            <div className="space-y-4">
-              <div className="border-l-2 border-t-2 border-blue-600 w-16 h-16 rounded-tl-sm" />
-              <div className="bg-blue-600/10 border border-blue-500/20 px-3 py-1 rounded text-[10px] font-mono text-blue-400">
-                SIGNAL: LOST_PACKET_404
-              </div>
-            </div>
-            <div className="text-right font-mono">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 mb-1">Live_Telemetry</p>
-              <p className="text-3xl font-black italic tracking-tighter text-white">{time}</p>
-              <div className="flex items-center justify-end gap-2 mt-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
-                <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold">System Online</span>
-              </div>
-            </div>
+        {/* --- LAYER 2: HUD INFORMATIVO --- */}
+        <div className="absolute inset-0 z-20 p-8 md:p-12 pointer-events-none flex flex-col justify-between text-slate-500 font-mono text-[10px] uppercase tracking-widest">
+          {/* Top Left */}
+          <div className="flex flex-col gap-1 border-l border-slate-800 pl-4">
+            <span className="text-blue-500 font-bold">Guardian_AI v.4.0</span>
+            <span>Object_Detection: ON</span>
           </div>
 
-          <div className="flex justify-between items-end">
-            <div className="border-l-2 border-b-2 border-slate-700 w-16 h-16 rounded-bl-sm" />
-            <div className="text-[10px] space-y-1 font-mono uppercase tracking-tighter opacity-30 text-slate-500">
-              <p>LAT: 137.137° N | LON: 3.7137° E</p>
-              <p>037_CORE_REVISION: 4.2</p>
-            </div>
-            <div className="border-r-2 border-b-2 border-slate-700 w-16 h-16 rounded-br-sm" />
+          {/* Top Right */}
+          <div className="text-right border-r border-slate-800 pr-4">
+            <p>REC_TIME</p>
+            <p className="text-white text-sm animate-pulse">{time}</p>
+          </div>
+
+          {/* Bottom Left */}
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+            <span>Camera_037 [LIVE]</span>
+          </div>
+
+          {/* Bottom Right */}
+          <div className="text-right">
+            <p>Anomaly_Detected</p>
+            <p>Tracking_ID: <span className="text-blue-500 font-bold">#USR_404</span></p>
           </div>
         </div>
 
-        {/* --- LAYER 3: IL MIRINO (037 RETICLE) --- */}
+        {/* --- LAYER 3: AI CAMERA TRACKER (Il Bounding Box) --- */}
         <motion.div
-            className="fixed top-0 left-0 pointer-events-none z-40 hidden lg:block"
+            className="fixed top-0 left-0 pointer-events-none z-50 mix-blend-screen"
             style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%" }}
         >
-          <div className="relative w-64 h-64 flex items-center justify-center">
-            {/* Cerchi rotanti */}
-            <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border border-dashed border-blue-500/20 rounded-full"
-            />
-            {/* Assi */}
-            <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
-            <div className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-blue-500/40 to-transparent" />
+          {/* BOUNDING BOX (Stile Computer Vision) */}
+          <div className="w-64 h-64 relative border border-blue-500/10 bg-blue-500/5 backdrop-blur-[1px]">
 
-            <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_10px_white]" />
+            {/* Angoli del Box (Brackets) */}
+            <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-blue-500" />
+            <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-blue-500" />
+            <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-blue-500" />
+            <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-blue-500" />
 
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[8px] px-2 py-0.5 font-black italic tracking-widest uppercase">
-              Searching_Node...
+            {/* Info Tag Superiore */}
+            <div className="absolute -top-6 left-0 flex gap-2">
+              <div className="bg-blue-600 text-white text-[9px] font-mono px-2 py-0.5 font-bold">
+                OBJ: HUMAN
+              </div>
+              <div className="bg-blue-900/80 text-blue-300 text-[9px] font-mono px-2 py-0.5 border border-blue-500/30">
+                CONFIDENCE: 99.8%
+              </div>
+            </div>
+
+            {/* Crosshair Centrale */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4">
+              <div className="absolute w-full h-[1px] bg-blue-500/50 top-1/2" />
+              <div className="absolute h-full w-[1px] bg-blue-500/50 left-1/2" />
+            </div>
+
+            {/* Linee tratteggiate verso il centro (Focus) */}
+            <div className="absolute top-1/2 left-2 right-2 h-[1px] border-t border-dashed border-blue-500/30" />
+            <div className="absolute left-1/2 top-2 bottom-2 w-[1px] border-l border-dashed border-blue-500/30" />
+
+            {/* Etichetta Inferiore */}
+            <div className="absolute -bottom-5 right-0 text-[8px] font-mono text-blue-400 bg-slate-900/80 px-1 border border-blue-500/20">
+              X: {sx.get().toFixed(0)} Y: {sy.get().toFixed(0)}
             </div>
           </div>
         </motion.div>
 
+
         {/* --- CONTENUTO CENTRALE --- */}
-        <div className="relative z-10 text-center px-6">
+        <div className="relative z-30 text-center px-6 max-w-2xl mx-auto">
+
           <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
           >
-            <div className="mb-8 inline-flex items-center justify-center w-24 h-24 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-500">
-              <ShieldAlert size={48} className="animate-pulse" />
+            {/* Icona Centrale */}
+            <div className="mx-auto mb-6 w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center border border-slate-800 shadow-[0_0_40px_rgba(59,130,246,0.15)] relative overflow-hidden">
+              <ScanFace size={32} className="text-white relative z-10 opacity-80" strokeWidth={1.5} />
+
+              {/* Effetto scansione interna icona */}
+              <motion.div
+                  animate={{ top: ["-100%", "200%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="absolute left-0 w-full h-1 bg-blue-500/50 blur-[2px] z-0"
+              />
             </div>
 
-            <h1 className="text-[15rem] leading-none font-black tracking-tighter text-white opacity-[0.03] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 select-none">
+            <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-700 tracking-tighter mb-2 opacity-20 select-none">
               404
             </h1>
 
-            <div className="space-y-4">
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase italic text-white leading-none">
-                NODO <span className="text-blue-500">NON TROVATO</span>
-              </h2>
-              <p className="text-slate-400 max-w-xl mx-auto text-lg md:text-xl italic font-light leading-relaxed">
-                Il sistema di scansione non ha rilevato nessuna risorsa all'indirizzo richiesto. Il perimetro è sicuro, ma questa zona è vuota.
+            <h2 className="text-2xl md:text-3xl font-light text-white uppercase tracking-[0.2em] mb-6">
+              Zona <span className="font-bold text-blue-500">Non Mappata</span>
+            </h2>
+
+            <div className="h-px w-16 bg-blue-500/50 mx-auto mb-6" />
+
+            <div className="bg-slate-900/60 border border-blue-500/10 p-8 rounded-lg backdrop-blur-md">
+              <p className="text-slate-400 text-sm md:text-base font-light leading-relaxed font-mono">
+                <span className="text-blue-500 font-bold mr-2">&gt;&gt; ANALISI COMPLETA:</span>
+                Il Guardian ha rilevato un tentativo di accesso a un settore inesistente.
+                <br className="my-2 block" />
+                <span className="text-white font-medium">
+                        Nessun problema. Il sistema rileva ogni intrusione, anche la più piccola.
+                    </span>
               </p>
             </div>
           </motion.div>
@@ -151,35 +170,19 @@ export default function SecurityNotFound() {
           <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="pt-12 flex flex-col sm:flex-row gap-6 justify-center items-center"
+              transition={{ delay: 0.5 }}
+              className="mt-10"
           >
             <Link
                 to="/"
-                className="group relative flex items-center justify-center gap-3 bg-blue-600 text-white font-black px-10 py-5 rounded-2xl transition-all hover:bg-blue-500 shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] italic uppercase text-sm tracking-widest"
+                className="group inline-flex items-center gap-3 px-8 py-3 bg-white text-slate-950 rounded hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]"
             >
-              <ArrowLeft size={18} className="group-hover:-translate-x-2 transition-transform" />
-              Rientra alla base
+              <MapPin size={16} />
+              <span className="text-xs font-bold uppercase tracking-widest">Torna al Percorso Sicuro</span>
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             </Link>
-            <div className="flex items-center gap-3 text-slate-500 font-mono text-[10px] uppercase tracking-widest">
-              <Radar size={14} className="text-blue-500" />
-              Scansione in corso...
-            </div>
           </motion.div>
-        </div>
 
-        {/* Footer tecnico HUD */}
-        <div className="absolute bottom-12 left-0 w-full px-12 hidden md:block">
-          <div className="flex justify-between items-end border-t border-white/5 pt-6 text-[10px] font-mono uppercase tracking-[0.2em] text-slate-600 italic">
-            <div className="space-y-1">
-              <p>Error_Code: ERR_LOCAL_INTRUSION_NULL</p>
-              <p>Protocol_Status: Encrypted_Session</p>
-            </div>
-            <div className="text-right space-y-1">
-              <p>037_TECNOLOGIA_SICUREZZA</p>
-              <p className="text-blue-500/50">All systems operational</p>
-            </div>
-          </div>
         </div>
       </div>
   );

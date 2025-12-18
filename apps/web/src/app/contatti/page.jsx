@@ -1,13 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Shield, Loader2, Globe, Clock, ArrowRight } from "lucide-react";
+import {
+  Mail, Phone, MapPin, Send, Loader2,
+  CheckCircle2, Building2, Globe, Users,
+  Briefcase, Wrench, FileText, ArrowRight
+} from "lucide-react";
 import Header from "../../components/Header";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ContattiPage() {
   const [formData, setFormData] = useState({
+    department: "sales", // Default a sales
     name: "",
+    company: "",
     email: "",
     phone: "",
     message: "",
@@ -24,12 +30,11 @@ export default function ContattiPage() {
     setFormStatus({ loading: true, success: false, error: null });
 
     try {
-      // Simulazione invio (sostituire con fetch reale se necessario)
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 1500));
       setFormStatus({ loading: false, success: true, error: null });
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ department: "sales", name: "", company: "", email: "", phone: "", message: "" });
     } catch (error) {
-      setFormStatus({ loading: false, success: false, error: "Errore di connessione al server." });
+      setFormStatus({ loading: false, success: false, error: "Errore durante l'invio." });
     }
   };
 
@@ -37,220 +42,271 @@ export default function ContattiPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
   return (
-      <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-100 selection:text-blue-900">
+      <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-900 selection:text-white">
         <Header />
 
-        {/* --- HERO SECTION: TECHNICAL OVERLAY --- */}
-        <section className="relative pt-40 pb-20 bg-slate-900 text-white overflow-hidden">
-          {/* Decorative Grid */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-          <div className="container mx-auto px-6 relative z-10 text-center">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-            >
-            <span className="text-blue-500 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block italic">
-              Communication_Node // 037_Connect
-            </span>
-              <h1 className="text-6xl md:text-8xl font-black mb-6 italic tracking-tighter leading-none uppercase">
-                ENTRA IN <span className="text-blue-500">CONTATTO</span>
+        {/* ===================== 1. HERO Istituzionale ===================== */}
+        <section className="relative pt-32 pb-24 bg-slate-900 text-white">
+          <div className="container mx-auto px-6 lg:px-12 relative z-10 text-center">
+            <motion.div initial="hidden" animate="visible" variants={fadeIn} className="max-w-3xl mx-auto">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                Come possiamo <span className="text-blue-500">aiutarti?</span>
               </h1>
-              <p className="text-xl md:text-2xl font-light text-slate-400 max-w-2xl mx-auto italic">
-                I nostri specialisti sono pronti a configurare la tua rete di sicurezza perimetrale.
+              <p className="text-xl text-slate-300 font-light leading-relaxed">
+                Seleziona l'area di tuo interesse per metterti in contatto con il team giusto.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* --- CONTACT TERMINAL SECTION --- */}
-        <section className="py-24 relative -mt-10 z-20">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-12 gap-12 items-start">
+        {/* ===================== 2. ROUTING CARDS (Axis/Dahua Style) ===================== */}
+        <section className="relative -mt-12 z-20 pb-12">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid md:grid-cols-3 gap-6">
 
-              {/* LEFT: Contact Information Tiles */}
-              <div className="lg:col-span-5 space-y-6">
-                <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-slate-200/60 border border-slate-100 group">
-                  <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <Mail size={24} />
-                    </div>
+              {/* SALES CARD */}
+              <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600 hover:shadow-2xl transition-all group cursor-pointer"
+                   onClick={() => document.getElementById('contact-form').scrollIntoView({behavior: 'smooth'})}>
+                <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <Briefcase size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Ufficio Commerciale</h3>
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                  Richiesta preventivi, informazioni sui prodotti, noleggio e progetti personalizzati.
+                </p>
+                <span className="text-blue-600 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
+                Contatta Vendite <ArrowRight size={16}/>
+              </span>
+              </div>
+
+              {/* SUPPORT CARD */}
+              <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-slate-400 hover:shadow-2xl transition-all group">
+                <div className="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-600 mb-6 group-hover:bg-slate-600 group-hover:text-white transition-colors">
+                  <Wrench size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Supporto Tecnico</h3>
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                  Assistenza post-vendita, documentazione tecnica, RMA e manualistica.
+                </p>
+                <a href="mailto:support@037.tech" className="text-slate-600 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all group-hover:text-blue-600">
+                  Apri Ticket <ArrowRight size={16}/>
+                </a>
+              </div>
+
+              {/* PARTNER CARD */}
+              <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-slate-900 hover:shadow-2xl transition-all group">
+                <div className="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-900 mb-6 group-hover:bg-slate-900 group-hover:text-white transition-colors">
+                  <Users size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Partner & Distributori</h3>
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                  Vuoi diventare un installatore certificato 037 o distribuire i nostri prodotti?
+                </p>
+                <a href="mailto:partners@037.tech" className="text-slate-900 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all group-hover:text-blue-600">
+                  Diventa Partner <ArrowRight size={16}/>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== 3. MAIN FORM SECTION ===================== */}
+        <section className="py-20 bg-slate-50" id="contact-form">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid lg:grid-cols-12 gap-16">
+
+              {/* Left: Quick Info & Offices */}
+              <div className="lg:col-span-5 space-y-10">
+                <div>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-4">Mettiti in contatto</h2>
+                  <p className="text-slate-500 leading-relaxed">
+                    Compila il modulo per essere ricontattato dal dipartimento di competenza. I nostri uffici sono aperti dal Lunedì al Venerdì, 09:00 - 18:00.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Headquarters</h4>
+                  <div className="flex items-start gap-4 mb-6">
+                    <MapPin className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1">E-Mail Access</p>
-                      <a href="mailto:info@037tecnologia.it" className="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors italic">
-                        info@037tecnologia.it
-                      </a>
+                      <p className="font-bold text-slate-900">037 Technology S.r.l.</p>
+                      <p className="text-slate-500 text-sm">Via dell'Innovazione 1, Milano<br/>20100, Italia</p>
                     </div>
+                  </div>
+                  <div className="flex items-center gap-4 mb-2">
+                    <Phone size={18} className="text-slate-400"/>
+                    <a href="tel:+39020000000" className="text-slate-900 font-medium hover:text-blue-600">+39 02 1234 5678</a>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Mail size={18} className="text-slate-400"/>
+                    <a href="mailto:info@037.tech" className="text-slate-900 font-medium hover:text-blue-600">info@037.tech</a>
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-slate-200/60 border border-slate-100 group">
-                  <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <Phone size={24} />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1">Direct Line</p>
-                      <a href="tel:+390212345678" className="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors italic">
-                        +39 02 1234 5678
-                      </a>
-                    </div>
+                {/* Global Presence Mini Map Concept */}
+                <div className="relative rounded-2xl overflow-hidden h-48 bg-slate-900">
+                  <img
+                      src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000"
+                      className="opacity-40 w-full h-full object-cover"
+                      alt="Global Map"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
+                    <Globe className="text-blue-400 mb-2" size={32}/>
+                    <h4 className="text-white font-bold">Operatività Globale</h4>
+                    <p className="text-slate-300 text-xs mt-1">Spedizioni e supporto in tutta Europa e Medio Oriente.</p>
                   </div>
-                </div>
-
-                <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-slate-200/60 border border-slate-100 group">
-                  <div className="flex items-center gap-6">
-                    <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <MapPin size={24} />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1">Location</p>
-                      <p className="text-xl font-bold text-slate-900 italic">Italia</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Status Display Card */}
-                <div className="bg-slate-900 p-8 rounded-[2rem] text-white overflow-hidden relative">
-                  <div className="relative z-10 flex flex-col gap-6">
-                    <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                      <span className="text-[10px] font-mono text-slate-400">OPERATIONAL_HOURS</span>
-                      <Clock size={16} className="text-blue-400" />
-                    </div>
-                    <div className="space-y-2 font-mono text-sm">
-                      <div className="flex justify-between uppercase">
-                        <span className="text-slate-500">Mon - Fri</span>
-                        <span>09:00 - 18:00</span>
-                      </div>
-                      <div className="flex justify-between uppercase text-red-500/70">
-                        <span className="text-slate-500">Sat - Sun</span>
-                        <span>Offline</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Globe className="absolute -bottom-10 -right-10 text-white/5" size={200} />
                 </div>
               </div>
 
-              {/* RIGHT: The Terminal Form */}
+              {/* Right: The Form */}
               <div className="lg:col-span-7">
-                <div className="bg-white rounded-[3rem] p-10 md:p-14 shadow-2xl border border-slate-100 relative overflow-hidden">
-                  <div className="mb-10 flex justify-between items-start">
-                    <div>
-                      <h2 className="text-4xl font-black text-slate-900 italic tracking-tighter uppercase leading-none">
-                        Secure <span className="text-blue-600">Message</span>
-                      </h2>
-                      <p className="text-slate-500 italic mt-2">Compila il form per una consulenza tecnica.</p>
-                    </div>
-                    <Shield size={40} className="text-slate-100" />
-                  </div>
+                <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100">
+                  <form onSubmit={handleSubmit} className="space-y-6">
 
-                  <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-6 italic">
+                    {/* Department Selector - KEY for Enterprise sites */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-700">Vorrei contattare...</label>
+                      <div className="relative">
+                        <select
+                            name="department"
+                            value={formData.department}
+                            onChange={handleChange}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-900 font-medium"
+                        >
+                          <option value="sales">Ufficio Commerciale (Vendite/Noleggio)</option>
+                          <option value="support">Supporto Tecnico</option>
+                          <option value="marketing">Marketing & Stampa</option>
+                          <option value="partners">Partnership & Distribuzione</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Full_Name</label>
+                        <label className="text-sm font-bold text-slate-700">Nome Completo *</label>
                         <input
                             type="text"
                             name="name"
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full bg-slate-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-500 transition-all font-bold placeholder:text-slate-300"
+                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                             placeholder="Nome e Cognome"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Email_Address</label>
+                        <label className="text-sm font-bold text-slate-700">Azienda / Ente</label>
+                        <input
+                            type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                            placeholder="Es. Comune di Milano, Edilizia Spa..."
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700">Email Lavorativa *</label>
                         <input
                             type="email"
                             name="email"
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full bg-slate-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-500 transition-all font-bold placeholder:text-slate-300"
-                            placeholder="email@example.com"
+                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                            placeholder="nome@azienda.com"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700">Telefono</label>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                            placeholder="+39..."
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2 italic">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Phone_Number</label>
-                      <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full bg-slate-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-500 transition-all font-bold placeholder:text-slate-300"
-                          placeholder="+39 000 000 0000"
-                      />
-                    </div>
-
-                    <div className="space-y-2 italic">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Inquiry_Details</label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-700">Messaggio *</label>
                       <textarea
                           name="message"
                           required
                           rows={5}
                           value={formData.message}
                           onChange={handleChange}
-                          className="w-full bg-slate-50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-500 transition-all font-bold placeholder:text-slate-300 resize-none"
-                          placeholder="Descrivi la tua esigenza (Cantiere, Militare, Eventi...)"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none"
+                          placeholder="Come possiamo supportare il tuo progetto?"
                       />
                     </div>
 
                     <button
                         type="submit"
-                        disabled={formStatus.loading}
-                        className="w-full bg-slate-900 hover:bg-blue-600 text-white font-black py-6 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-4 uppercase tracking-[0.2em] group italic active:scale-95"
+                        disabled={formStatus.loading || formStatus.success}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {formStatus.loading ? (
                           <Loader2 className="animate-spin" />
+                      ) : formStatus.success ? (
+                          <>Richiesta Inviata <CheckCircle2 size={20}/></>
                       ) : (
-                          <>
-                            <span>Transmitting_Data</span>
-                            <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                          </>
+                          <>Invia Messaggio <Send size={18} /></>
                       )}
                     </button>
 
                     <AnimatePresence>
                       {formStatus.success && (
                           <motion.div
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 rounded-xl text-center text-sm font-bold italic"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              className="bg-green-50 text-green-800 p-4 rounded-lg text-sm border border-green-200 flex items-start gap-3"
                           >
-                            ✓ CONNESSIONE STABILITA: Messaggio inviato correttamente.
+                            <CheckCircle2 size={18} className="mt-0.5 flex-shrink-0"/>
+                            <div>
+                              <strong>Grazie per averci contattato.</strong>
+                              <p>La tua richiesta è stata inoltrata al dipartimento {formData.department === 'sales' ? 'Commerciale' : formData.department === 'support' ? 'Tecnico' : 'competente'}. Risponderemo entro 24h.</p>
+                            </div>
                           </motion.div>
                       )}
                     </AnimatePresence>
-                  </form>
 
-                  {/* Cyber Decorative Lines */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-600/5 -mr-12 -mt-12 rounded-full blur-3xl" />
+                    <p className="text-xs text-slate-400 text-center">
+                      037 Technology si impegna a proteggere la tua privacy. Usiamo le informazioni fornite solo per rispondere alla tua richiesta.
+                    </p>
+                  </form>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
-        {/* --- FOOTER: MINIMALIST --- */}
-        <footer className="bg-white py-16 border-t border-slate-100 font-mono uppercase text-[10px] tracking-widest">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <img
-                src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                alt="037 Logo"
-                className="h-6 grayscale opacity-50"
-            />
-            <div className="flex gap-8 text-slate-400">
-            <span className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-              Server_Online
-            </span>
-              <span>Auth_Protocol_Active</span>
+        {/* ===================== FOOTER ===================== */}
+        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="font-bold text-white text-lg">037</div>
+            <div className="flex gap-8 font-medium">
+              <a href="/prodotti" className="hover:text-white transition-colors">Prodotti</a>
+              <a href="/chi-siamo" className="hover:text-white transition-colors">Azienda</a>
+              <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
             </div>
-            <p className="text-slate-400 italic">© 037_TECNOLOGIA // {new Date().getFullYear()}</p>
+            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
           </div>
         </footer>
       </div>

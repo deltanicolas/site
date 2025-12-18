@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Globe, ShieldCheck, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom"; // <--- IMPORTANTE: Importiamo Link
+import { Menu, X, Globe, ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -41,7 +42,8 @@ export default function Header() {
           <div className="container mx-auto px-6 flex items-center justify-between">
 
             {/* --- LOGO AREA --- */}
-            <a href="/" className="relative flex items-center group">
+            {/* Usa Link invece di a */}
+            <Link to="/" className="relative flex items-center group">
               <motion.img
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -59,19 +61,19 @@ export default function Header() {
                   <span className="text-[10px] font-bold text-white uppercase tracking-widest">Active_Node</span>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* --- DESKTOP NAVIGATION --- */}
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
-                  <a
+                  <Link
                       key={link.href}
-                      href={link.href}
+                      to={link.href} // Usa to invece di href
                       className="relative px-5 py-2 text-sm font-bold text-white/70 uppercase tracking-widest transition-all hover:text-white group"
                   >
                     {link.label}
                     <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full group-hover:left-0" />
-                  </a>
+                  </Link>
               ))}
             </nav>
 
@@ -87,13 +89,13 @@ export default function Header() {
               </button>
 
               {/* CTA Button */}
-              <a
-                  href="/contatti"
+              <Link
+                  to="/contatti" // Usa to invece di href
                   className="group relative flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-900/20 active:scale-95"
               >
                 <ShieldCheck size={16} className="group-hover:rotate-12 transition-transform" />
                 {t("home.header.contact")}
-              </a>
+              </Link>
             </div>
 
             {/* --- MOBILE TOGGLE --- */}
@@ -121,27 +123,37 @@ export default function Header() {
 
                 <nav className="relative z-10 flex flex-col gap-6">
                   {navLinks.map((link, idx) => (
-                      <motion.a
+                      // Wrapper motion per l'animazione d'entrata
+                      <motion.div
+                          key={link.href}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: idx * 0.1 }}
-                          key={link.href}
-                          href={link.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="text-4xl font-black text-white uppercase italic tracking-tighter hover:text-blue-500 transition-colors"
                       >
-                        {link.label}
-                      </motion.a>
+                        <Link
+                            to={link.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="text-4xl font-black text-white uppercase italic tracking-tighter hover:text-blue-500 transition-colors block"
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
                   ))}
-                  <motion.a
+
+                  {/* Link Contatti Mobile */}
+                  <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4 }}
-                      href="/contatti"
-                      className="text-4xl font-black text-blue-500 uppercase italic tracking-tighter"
                   >
-                    {t("home.header.contact")}
-                  </motion.a>
+                    <Link
+                        to="/contatti"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-4xl font-black text-blue-500 uppercase italic tracking-tighter block"
+                    >
+                      {t("home.header.contact")}
+                    </Link>
+                  </motion.div>
                 </nav>
 
                 <div className="mt-auto relative z-10 flex flex-col gap-8">

@@ -2,16 +2,8 @@
 
 import Header from "../../components/Header";
 import {
-  Building2,
-  Shield,
-  Users,
-  Globe,
-  ChevronRight,
-  ArrowRight,
-  Radar,
-  Lock,
-  Zap,
-  Target
+  Building2, ShieldCheck, Users, Globe, ChevronRight,
+  ArrowRight, Radar, Lock, Zap, Target, Truck, Ship, Plane
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -19,219 +11,218 @@ import { motion } from "framer-motion";
 export default function ApplicazioniPage() {
   const { t } = useTranslation();
 
-  const civilApplications = [
+  const applications = [
     {
-      icon: Building2,
-      title: "Infrastrutture Critiche",
-      description: "Protezione di centrali elettriche, impianti idrici e reti di telecomunicazioni con sistemi di recinzione virtuale invisibile.",
+      category: "Infrastrutture Critiche",
+      img: "https://images.unsplash.com/photo-1565514020125-02753229b9f7?auto=format&fit=crop&q=80&w=2070", // Power plant / Industry
+      desc: "Protezione perimetrale per centrali elettriche, impianti idrici e nodi di telecomunicazione.",
+      features: ["Rilevamento intrusioni", "Termiche h24", "Integrazione SCADA"]
     },
     {
-      icon: Globe,
-      title: "Poli Industriali",
-      description: "Sorveglianza perimetrale di stabilimenti produttivi e zone di stoccaggio merci ad alto valore.",
+      category: "Cantieri & Costruzioni",
+      img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2070", // Construction site
+      desc: "Monitoraggio stato avanzamento lavori (SAL) e prevenzione furti materiali e attrezzature.",
+      features: ["Time-lapse 4K", "Deterrenza attiva", "Controllo accessi"]
     },
     {
-      icon: Users,
-      title: "Grandi Eventi",
-      description: "Sicurezza temporanea ad alto impatto per concerti, manifestazioni e raduni pubblici in spazi aperti.",
+      category: "Logistica & Trasporti",
+      img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2070", // Logistics
+      desc: "Sicurezza per aree di stoccaggio merci, porti, interporti e parcheggi mezzi pesanti.",
+      features: ["Lettura targhe (LPR)", "Tracciamento flussi", "Anti-scavalcamento"]
     },
     {
-      icon: Target,
-      title: "Zone Sensibili",
-      description: "Controllo accessi e monitoraggio costante per porti, aeroporti e sedi diplomatiche.",
-    },
+      category: "Grandi Eventi",
+      img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=2070", // Event / Crowd
+      desc: "Gestione della folla e sicurezza pubblica per concerti, manifestazioni e fiere temporanee.",
+      features: ["Conta persone", "Analisi densità", "Deploy rapido"]
+    }
   ];
 
-  const militaryApplications = [
-    {
-      icon: Shield,
-      title: "Basi Operative",
-      description: "Protezione perimetrale di FOB (Forward Operating Base) e installazioni strategiche in territori ostili.",
-    },
-    {
-      icon: Radar,
-      title: "Zone di Conflitto",
-      description: "Sorveglianza avanzata AI-driven per missioni di peacekeeping e monitoraggio confini.",
-    },
-    {
-      icon: Zap,
-      title: "Missioni Tattiche",
-      description: "Deploy rapido per posti di comando mobili e zone di operazione temporanee senza rete elettrica.",
-    },
-    {
-      icon: Lock,
-      title: "Force Protection",
-      description: "Sistemi anti-intrusione per la protezione di convogli e personale in aree ad alto rischio.",
-    },
+  const defenseApps = [
+    { icon: ShieldCheck, title: "Force Protection", desc: "Difesa perimetrale di basi operative avanzate (FOB) e accampamenti temporanei." },
+    { icon: Radar, title: "Border Control", desc: "Sorveglianza confini a lungo raggio con radar e termiche integrate." },
+    { icon: Zap, title: "Rapid Response", desc: "Unità autonome elitrasportabili per scenari di crisi immediata." },
+    { icon: Lock, title: "Asset Defense", desc: "Protezione di depositi munizioni, hangar e infrastrutture strategiche." }
   ];
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
 
   return (
-      <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+      <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-900 selection:text-white">
         <Header />
 
-        {/* --- HERO SECTION --- */}
-        <section className="relative pt-40 pb-24 bg-slate-900 text-white overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:30px_30px]" />
+        {/* ===================== 1. HERO SECTION (Immersive) ===================== */}
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-slate-900 text-white overflow-hidden">
+          {/* Immagine di sfondo evocativa (City/Infrastructure) */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-slate-900/80 z-10"></div>
+            <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070"
+                alt="Urban Infrastructure"
+                className="w-full h-full object-cover grayscale opacity-50"
+            />
+          </div>
 
-          <div className="container mx-auto px-6 relative z-10">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="max-w-4xl"
-            >
-            <span className="text-blue-500 font-black uppercase tracking-[0.4em] text-xs mb-4 block italic">
-              Operational Scenarios
+          <div className="container mx-auto px-6 lg:px-12 relative z-20 text-center">
+            <motion.div initial="hidden" animate="visible" variants={fadeIn} className="max-w-4xl mx-auto">
+            <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+              Scenari Operativi
             </span>
-              <h1 className="text-6xl md:text-8xl font-black mb-8 italic tracking-tighter leading-none">
-                SETTORI DI <span className="text-blue-500">IMPIEGO</span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-tight">
+                Proteggiamo ogni <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">
+                ambiente critico.
+              </span>
               </h1>
-              <p className="text-2xl md:text-3xl font-light text-slate-400 leading-relaxed italic">
-                Dalla protezione di asset industriali alla difesa di obiettivi strategici nazionali.
+              <p className="text-xl text-slate-300 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
+                Le soluzioni 037 sono modulari e scalabili. Progettate per adattarsi alle esigenze specifiche del settore Civile, Industriale e Difesa.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* --- CIVIL APPLICATIONS (White Style) --- */}
-        <section className="py-32 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
-              <div className="max-w-2xl">
-                <h2 className="text-5xl font-black text-slate-900 italic tracking-tighter uppercase mb-6">
-                  Ambito <span className="text-blue-600 font-light">Civile</span>
-                </h2>
-                <p className="text-xl text-slate-500 italic font-light">
-                  Recinzioni virtuali e sistemi AI per garantire la continuità operativa del business e la sicurezza delle persone.
+        {/* ===================== 2. CIVIL & INDUSTRIAL (Card Grid with Images) ===================== */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-slate-100 pb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-2">Settore Civile & Industriale</h2>
+                <p className="text-slate-500 max-w-xl">
+                  Sicurezza attiva per la continuità del business e la protezione degli asset.
                 </p>
               </div>
-              <div className="hidden lg:block h-[1px] flex-grow mx-12 bg-slate-100 mb-6" />
+              <a href="/contatti" className="hidden md:flex items-center gap-2 text-blue-700 font-bold hover:gap-3 transition-all">
+                Parla con un esperto di settore <ArrowRight size={18}/>
+              </a>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {civilApplications.map((app, index) => (
-                  <div
-                      key={index}
-                      className="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500"
-                  >
-                    <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:rotate-6 transition-transform">
-                      <app.icon size={32} />
+            <div className="grid md:grid-cols-2 gap-8">
+              {applications.map((app, index) => (
+                  <div key={index} className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                    <div className="h-64 overflow-hidden relative">
+                      <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                      <img
+                          src={app.img}
+                          alt={app.category}
+                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
                     </div>
-                    <h3 className="text-3xl font-black text-slate-900 mb-4 italic tracking-tighter uppercase">
-                      {app.title}
-                    </h3>
-                    <p className="text-slate-600 text-lg leading-relaxed italic">
-                      {app.description}
-                    </p>
+                    <div className="p-8 flex flex-col flex-grow">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3">{app.category}</h3>
+                      <p className="text-slate-600 mb-6 flex-grow leading-relaxed">
+                        {app.desc}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {app.features.map((feat, i) => (
+                            <span key={i} className="text-xs font-bold uppercase tracking-wide text-slate-500 bg-slate-100 px-3 py-1 rounded-sm">
+                          {feat}
+                        </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* --- MILITARY APPLICATIONS (Dark Style) --- */}
-        <section className="py-32 bg-slate-900 text-white relative overflow-hidden">
-          {/* Pattern radar decorativo */}
-          <div className="absolute top-1/2 right-0 w-1/2 h-full bg-[repeating-conic-gradient(from_0deg,#3b82f610_0deg_10deg,transparent_10deg_20deg)] opacity-20 pointer-events-none" />
+        {/* ===================== 3. DEFENSE & SECURITY (Dark Tech Section) ===================== */}
+        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+          {/* Background tecnico */}
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+          <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-blue-900/20 to-transparent"></div>
 
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="flex flex-col lg:flex-row-reverse justify-between items-end mb-20 gap-8 text-right">
-              <div className="max-w-2xl">
-                <h2 className="text-5xl font-black text-white italic tracking-tighter uppercase mb-6">
-                  Ambito <span className="text-blue-500 font-light">Militare</span>
-                </h2>
-                <p className="text-xl text-slate-400 italic font-light">
-                  Affidabilità estrema in condizioni critiche. Tecnologia "Dual-Use" progettata per la protezione delle forze.
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <div className="flex flex-col md:flex-row gap-12 mb-16">
+              <div className="md:w-1/3">
+                <div className="inline-block p-3 bg-blue-600 rounded-lg mb-6">
+                  <ShieldCheck size={32} className="text-white"/>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Difesa & <br/>Gov.</h2>
+                <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                  Soluzioni <strong>Dual-Use</strong> ingegnerizzate per operare in teatri non permissivi.
+                  Standard MIL-STD e crittografia avanzata per la protezione delle informazioni.
                 </p>
-              </div>
-              <div className="hidden lg:block h-[1px] flex-grow mx-12 bg-white/10 mb-6" />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
-              {militaryApplications.map((app, index) => (
-                  <div
-                      key={index}
-                      className="group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600 transition-all duration-500"
-                  >
-                    <div className="w-16 h-16 bg-white text-slate-900 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform">
-                      <app.icon size={32} />
-                    </div>
-                    <h3 className="text-3xl font-black text-white mb-4 italic tracking-tighter uppercase">
-                      {app.title}
-                    </h3>
-                    <p className="text-slate-400 group-hover:text-white/80 text-lg leading-relaxed italic transition-colors">
-                      {app.description}
-                    </p>
-                  </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* --- QUOTE SECTION: THE MISSION --- */}
-        <section className="py-40 bg-white text-center">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <span className="text-blue-600 text-6xl font-serif mb-8 block opacity-20">"</span>
-              <blockquote className="text-4xl md:text-5xl font-black text-slate-900 italic tracking-tighter leading-tight mb-12 uppercase">
-                Ogni individuo ha diritto alla vita, alla libertà e alla sicurezza della propria persona.
-              </blockquote>
-              <div className="h-[2px] w-24 bg-blue-600 mx-auto mb-6" />
-              <footer className="text-sm font-mono tracking-widest text-slate-400 uppercase">
-                Articolo 3 // Dichiarazione Universale dei Diritti dell'Uomo
-              </footer>
-            </div>
-          </div>
-        </section>
-
-        {/* --- CTA: CUSTOM SOLUTIONS --- */}
-        <section className="pb-32 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-white text-center relative overflow-hidden">
-              <div className="relative z-10">
-                <h2 className="text-5xl md:text-7xl font-black italic tracking-tighter mb-8 uppercase">
-                  Hai un progetto <span className="text-blue-500">Specifico?</span>
-                </h2>
-                <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto italic font-light">
-                  Le nostre unità Guardian e NRG sono modulari. Contattaci per una consulenza tecnica su misura per il tuo scenario operativo.
-                </p>
-                <a
-                    href="/contatti"
-                    className="inline-flex items-center justify-center gap-4 bg-blue-600 hover:bg-blue-500 px-12 py-6 rounded-2xl font-black text-xl transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-blue-600/20"
-                >
-                  RICHIEDI CONSULENZA
-                  <ArrowRight size={24} />
+                <a href="/contatti" className="inline-flex items-center gap-2 text-white border-b border-blue-500 pb-1 hover:text-blue-400 transition-colors">
+                  Accesso Area Riservata <ArrowRight size={16}/>
                 </a>
               </div>
-              {/* Elemento grafico HUD decorativo */}
-              <div className="absolute -bottom-20 -right-20 w-80 h-80 border-[20px] border-white/5 rounded-full" />
+
+              <div className="md:w-2/3 grid sm:grid-cols-2 gap-6">
+                {defenseApps.map((item, idx) => (
+                    <div key={idx} className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl hover:bg-slate-800 transition-colors">
+                      <div className="text-blue-500 mb-4">
+                        {item.icon === ShieldCheck ? <ShieldCheck size={28}/> :
+                            item.icon === Radar ? <Radar size={28}/> :
+                                item.icon === Zap ? <Zap size={28}/> : <Lock size={28}/>}
+                      </div>
+                      <h4 className="text-xl font-bold mb-2">{item.title}</h4>
+                      <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* --- FOOTER --- */}
-        <footer className="bg-slate-950 text-white py-20 border-t border-white/5">
-          <div className="container mx-auto px-6 grid md:grid-cols-3 gap-16">
-            <div>
-              <img
-                  src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                  alt="037 Logo"
-                  className="h-8 mb-8"
-              />
-              <p className="text-slate-500 italic text-sm">Leader nell'innovazione per la sicurezza perimetrale attraverso sistemi autonomi AI-driven.</p>
+        {/* ===================== 4. QUOTE (Elegant & Institutional) ===================== */}
+        <section className="py-32 bg-white text-center">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="mb-8">
+              <span className="text-6xl text-slate-200 font-serif leading-none">“</span>
             </div>
-            <div className="grid grid-cols-2 gap-8 col-span-2 uppercase font-black text-[10px] tracking-widest">
-              <div className="space-y-4">
-                <p className="text-blue-500">Navigazione</p>
-                <a href="/chi-siamo" className="block hover:text-blue-400">Company_Profile</a>
-                <a href="/guardian" className="block hover:text-blue-400">Guardian_XTEN</a>
-                <a href="/matrix" className="block hover:text-blue-400">Guardian_NRG</a>
-              </div>
-              <div className="space-y-4">
-                <p className="text-blue-500">Contatti</p>
-                <p className="text-slate-400">info@037tecnologia.it</p>
-                <p className="text-slate-400">+39 02 1234 5678</p>
+            <blockquote className="text-3xl md:text-4xl font-serif text-slate-800 leading-relaxed mb-8">
+              Ogni individuo ha diritto alla vita, alla libertà e alla sicurezza della propria persona.
+            </blockquote>
+            <div className="flex items-center justify-center gap-4">
+              <div className="h-px w-12 bg-slate-300"></div>
+              <cite className="text-sm font-bold text-slate-500 uppercase tracking-widest not-italic">
+                Dichiarazione Universale dei Diritti Umani, Art. 3
+              </cite>
+              <div className="h-px w-12 bg-slate-300"></div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== 5. CTA (Consultancy) ===================== */}
+        <section className="py-20 bg-slate-50 border-t border-slate-200">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="bg-blue-700 rounded-2xl p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
+              {/* Decorative shapes */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2"></div>
+
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+                <div className="max-w-2xl">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Progetti su misura?</h2>
+                  <p className="text-blue-100 text-lg leading-relaxed">
+                    Il nostro team di ingegneri analizza la planimetria e le criticità del tuo sito per sviluppare un piano di sicurezza personalizzato.
+                  </p>
+                </div>
+                <div className="flex-shrink-0">
+                  <a href="/contatti" className="inline-block bg-white text-blue-700 font-bold text-lg px-8 py-4 rounded-xl hover:bg-slate-100 transition-colors shadow-lg">
+                    Richiedi Studio di Fattibilità
+                  </a>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ===================== FOOTER ===================== */}
+        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="font-bold text-white text-lg">037</div>
+            </div>
+            <div className="flex gap-8 font-medium">
+              <a href="/guardian" className="hover:text-white transition-colors">Prodotti</a>
+              <a href="/applicazioni" className="text-white">Applicazioni</a>
+              <a href="/contatti" className="hover:text-white transition-colors">Contatti</a>
+            </div>
+            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
           </div>
         </footer>
       </div>
