@@ -2,366 +2,276 @@
 
 import Header from "../../components/Header";
 import {
-  Monitor,
-  Users,
-  Maximize,
-  Cpu,
-  Network,
-  Database,
-  Activity,
+  Sun,
+  BatteryCharging,
+  Zap,
+  Move,
+  Wifi,
   ShieldCheck,
   ChevronRight,
+  ArrowRight,
+  Leaf,
+  Wind,
+  Settings,
+  Unplug
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
-export default function MatrixPage() {
+export default function GuardianNRGPage() {
+  const { t } = useTranslation();
+
   const features = [
     {
-      icon: Monitor,
-      title: "Centrale di Controllo",
-      description:
-        "Sistema di gestione centralizzato per il monitoraggio di tutte le unità Guardian",
+      icon: Sun,
+      title: "Solar Powered",
+      description: "Pannelli fotovoltaici ad alta efficienza integrati per ricarica continua."
     },
     {
-      icon: Users,
-      title: "Singolo Operatore",
-      description:
-        "Gestione efficiente di più Guardian con un solo operatore qualificato",
+      icon: BatteryCharging,
+      title: "Lithium Core",
+      description: "Batterie al litio di ultima generazione per un'autonomia notturna estesa."
     },
     {
-      icon: Maximize,
-      title: "Shelter 20ft/40ft",
-      description:
-        "Moduli abitabili da 20 o 40 piedi per adattarsi alle diverse esigenze operative",
+      icon: Move,
+      title: "Ultra-Portable",
+      description: "Design compatto e leggero, trasportabile su piccoli rimorchi o pick-up."
     },
     {
-      icon: Cpu,
-      title: "Tecnologia Avanzata",
-      description:
-        "Hardware e software di ultima generazione per il controllo in tempo reale",
+      icon: Unplug,
+      title: "Off-Grid Ready",
+      description: "Funzionamento al 100% indipendente dalla rete elettrica fissa."
     },
     {
-      icon: Network,
-      title: "Multi-Guardian",
-      description:
-        "Coordinamento simultaneo di più unità Guardian per copertura estesa",
+      icon: Wifi,
+      title: "Mesh Network",
+      description: "Connettività wireless criptata per monitoraggio remoto costante."
     },
     {
-      icon: Database,
-      title: "Gestione Dati",
-      description:
-        "Archiviazione e analisi centralizzata di tutti i dati di sorveglianza",
-    },
-    {
-      icon: Activity,
-      title: "Monitoraggio Real-Time",
-      description:
-        "Visualizzazione live di tutte le informazioni da sensori e telecamere",
+      icon: Leaf,
+      title: "Zero Emission",
+      description: "Operatività silenziosa e rispettosa dell'ambiente, ideale per parchi o eventi."
     },
     {
       icon: ShieldCheck,
-      title: "Affidabilità",
-      description:
-        "Sistema ridondante e backup per garantire operatività continua",
+      title: "Rapid Deploy",
+      description: "Configurazione e attivazione del perimetro in meno di 10 minuti."
+    },
+    {
+      icon: Settings,
+      title: "Smart Management",
+      description: "Software di gestione energetica per ottimizzare i consumi in base al meteo."
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+      <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+        <Header />
 
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-6xl md:text-7xl font-bold mb-8">MATRIX</h1>
-              <p className="text-2xl font-light leading-relaxed mb-8">
-                Centrale di controllo shelter per sistemi di sorveglianza
-                perimetrale multi-Guardian
-              </p>
-              <a
-                href="/contatti"
-                className="group inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
+        {/* --- HERO SECTION: THE ENERGY REVOLUTION --- */}
+        <section className="relative pt-32 lg:pt-48 pb-24 bg-slate-900 overflow-hidden">
+          {/* Background Overlay con Grid Solare */}
+          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
               >
-                Richiedi Informazioni
-                <ChevronRight
-                  className="transition-transform group-hover:translate-x-1"
-                  size={24}
-                />
-              </a>
-            </div>
-            <div className="relative">
-              <img
-                src="https://ucarecdn.com/3a971e0f-2a5e-46a6-95d1-97a35bb0cca1/-/format/auto/"
-                alt="Matrix Control System"
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
-      </section>
-
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-8 text-xl">
-              <p>
-                <strong>Matrix</strong> è uno shelter da{" "}
-                <strong>20ft./40ft. abitabile</strong>, costituisce la centrale
-                di controllo di un sistema di sorveglianza perimetrale
-                multi-Guardian che consente di estendere a volontà l'area e la
-                zona di impiego con l'ausilio di{" "}
-                <strong>un solo operatore</strong>.
-              </p>
-              <p>
-                È un <strong>concentrato assoluto di tecnologia</strong> che
-                permette il controllo centralizzato di più unità Guardian per
-                coprire aree estese con massima efficienza operativa. Ogni
-                Matrix può coordinare simultaneamente diverse unità Guardian,
-                creando una rete di sicurezza perimetrale scalabile e altamente
-                efficace.
-              </p>
-              <p>
-                La soluzione Matrix rappresenta l'evoluzione naturale del
-                sistema Guardian, permettendo di creare infrastrutture di
-                sicurezza complesse e integrate per la protezione di aree di
-                qualsiasi dimensione.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-5xl font-bold text-slate-900 mb-16 text-center">
-            Caratteristiche Tecniche
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-14 h-14 bg-blue-600 rounded-lg flex items-center justify-center mb-5">
-                    <Icon className="text-white" size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {feature.description}
-                  </p>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+                  <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                  Next-Gen Energy Independence
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                <h1 className="text-6xl md:text-8xl font-black text-white mb-6 italic tracking-tighter leading-none">
+                  GUARDIAN <span className="text-blue-500 italic">NRG</span>
+                </h1>
+                <p className="text-2xl text-slate-400 font-light leading-relaxed mb-10 max-w-xl italic">
+                  Sicurezza perimetrale ad alta tecnologia, alimentata dal sole. Il Guardian NRG è la soluzione agile e autosufficiente per ogni scenario.
+                </p>
+                <div className="flex flex-wrap gap-6">
+                  <a
+                      href="/contatti"
+                      className="group relative flex items-center gap-3 bg-blue-600 text-white font-bold px-10 py-5 rounded-xl transition-all hover:bg-blue-500 shadow-[0_20px_40px_-10px_rgba(37,99,235,0.5)]"
+                  >
+                    Richiedi Specifiche NRG
+                    <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  </a>
+                </div>
+              </motion.div>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-5xl font-bold text-slate-900 mb-16 text-center">
-            Come Funziona
-          </h2>
-          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-                1
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Installazione
-              </h3>
-              <p className="text-slate-700 leading-relaxed">
-                Lo shelter Matrix viene posizionato nell'area centrale di
-                controllo. Le unità Guardian vengono distribuite nei punti
-                strategici del perimetro.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-                2
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Coordinamento
-              </h3>
-              <p className="text-slate-700 leading-relaxed">
-                Matrix si connette a tutte le unità Guardian, creando una rete
-                di sorveglianza integrata con comunicazione bidirezionale in
-                tempo reale.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-bold">
-                3
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Controllo
-              </h3>
-              <p className="text-slate-700 leading-relaxed">
-                Un singolo operatore monitora e gestisce l'intero sistema dalla
-                centrale, con accesso a tutti i dati e possibilità di intervento
-                immediato.
-              </p>
+              <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1 }}
+                  className="relative"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-tr from-emerald-600 to-transparent rounded-3xl blur-2xl opacity-20" />
+                <img
+                    src="https://ucarecdn.com/3a971e0f-2a5e-46a6-95d1-97a35bb0cca1/-/format/auto/"
+                    alt="Guardian NRG System"
+                    className="relative z-10 w-full h-auto rounded-3xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700"
+                />
+                {/* Technical Tag Overlay */}
+                <div className="absolute -bottom-6 -left-4 z-20 bg-slate-900 border border-white/10 p-6 rounded-xl backdrop-blur-xl shadow-2xl">
+                  <div className="flex items-center gap-4">
+                    <Zap className="text-emerald-400 animate-bounce" size={32} />
+                    <div>
+                      <p className="text-emerald-500 font-mono text-xs mb-1">ENERGY_STATUS</p>
+                      <p className="text-white font-black text-xl tracking-tighter italic">100% AUTONOMOUS</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-5xl font-bold mb-16 text-center">
-            Vantaggi del Sistema Matrix
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-4">Scalabilità</h3>
-              <p className="text-lg leading-relaxed opacity-90">
-                Estendi la copertura di sicurezza aggiungendo unità Guardian
-                senza limiti, mantenendo il controllo centralizzato da un'unica
-                postazione.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-4">Efficienza</h3>
-              <p className="text-lg leading-relaxed opacity-90">
-                Riduzione drastica del personale necessario: un solo operatore
-                può gestire aree che richiederebbero molteplici squadre di
-                sorveglianza.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-4">Flessibilità</h3>
-              <p className="text-lg leading-relaxed opacity-90">
-                Shelter trasportabili e configurabili per adattarsi a qualsiasi
-                scenario operativo, da installazioni permanenti a missioni
-                temporanee.
-              </p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-4">Intelligence</h3>
-              <p className="text-lg leading-relaxed opacity-90">
-                Analisi centralizzata dei dati provenienti da tutte le fonti per
-                intelligence avanzata e decisioni informate in tempo reale.
-              </p>
+        {/* --- VISION & UTILITY SECTION --- */}
+        <section className="py-24 bg-white overflow-hidden">
+          <div className="container mx-auto px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-20 items-center italic">
+                <div className="relative">
+                  <div className="text-[12rem] font-black text-slate-50 absolute -top-20 -left-10 z-0 select-none">NRG</div>
+                  <div className="relative z-10 space-y-8 text-2xl leading-relaxed text-slate-700 font-light">
+                    <p className="uppercase font-medium text-slate-900">
+                      Il <strong>Guardian NRG</strong> rappresenta la sintesi perfetta tra mobilità e potenza. Progettato per chi necessita di una protezione di alto livello in contesti privi di infrastrutture elettriche.
+                    </p>
+                    <p>
+                      Dotato di una base di ricarica intelligente con <strong>batterie al litio ad alta densità</strong>, il sistema accumula energia durante il giorno tramite pannelli solari ripiegabili per garantire un'operatività h24, senza sosta.
+                    </p>
+                    <p>
+                      La sua struttura ridotta lo rende ideale per la protezione di cantieri mobili, eventi temporanei o monitoraggio agricolo avanzato.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100 flex items-start gap-6">
+                    <div className="p-3 bg-white rounded-xl shadow-sm"><Sun className="text-blue-600" /></div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 uppercase tracking-tighter italic">Full Solar Support</h4>
+                      <p className="text-slate-500 text-sm">Ricarica integrata anche in condizioni di scarsa luminosità.</p>
+                    </div>
+                  </div>
+                  <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100 flex items-start gap-6">
+                    <div className="p-3 bg-white rounded-xl shadow-sm"><BatteryCharging className="text-blue-600" /></div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 uppercase tracking-tighter italic">Lithium Intelligence</h4>
+                      <p className="text-slate-500 text-sm">Cicli di vita raddoppiati rispetto alle batterie standard.</p>
+                    </div>
+                  </div>
+                  <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100 flex items-start gap-6">
+                    <div className="p-3 bg-white rounded-xl shadow-sm"><Move className="text-blue-600" /></div>
+                    <div>
+                      <h4 className="font-bold text-slate-900 uppercase tracking-tighter italic">Easy Transport</h4>
+                      <p className="text-slate-500 text-sm">Movimentazione rapida senza mezzi pesanti speciali.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl font-bold text-slate-900 mb-8">
-              Crea la tua rete di sicurezza perimetrale
+        {/* --- FEATURES GRID: MODULAR & TECHNICAL --- */}
+        <section className="py-32 bg-slate-950 relative overflow-hidden">
+          {/* Cerchio decorativo radiale */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[120px]" />
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-24">
+              <h2 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter uppercase mb-4 leading-none">
+                Core <span className="text-blue-500">Technology</span>
+              </h2>
+              <p className="text-slate-500 font-mono text-xs tracking-[0.5em] uppercase">Architecture and Components</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                  <div
+                      key={index}
+                      className="group bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-slate-900 transition-all duration-500 hover:border-blue-500/50"
+                  >
+                    <div className="w-14 h-14 bg-slate-800 text-blue-400 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:bg-blue-600 group-hover:text-white transition-all group-hover:scale-110">
+                      <feature.icon size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tighter italic">{feature.title}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed italic group-hover:text-slate-200">
+                      {feature.description}
+                    </p>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- HOW IT DEPLOYS: STEP BY STEP --- */}
+        <section className="py-32 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center mb-20">
+              <h2 className="text-5xl font-black text-slate-900 italic tracking-tighter mb-6">RAPID OFF-GRID DEPLOYMENT</h2>
+              <p className="text-xl text-slate-500 italic">Tre fasi per l'indipendenza totale.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-12 relative">
+              {/* Linea connettiva */}
+              <div className="hidden lg:block absolute top-1/2 left-0 w-full h-[1px] bg-slate-100 -z-0" />
+
+              {[
+                { step: "01", title: "Transport", desc: "Posiziona NRG nel punto desiderato tramite un normale gancio di traino." },
+                { step: "02", title: "Activate", desc: "I pannelli solari si aprono e il sistema avvia il check delle batterie al litio." },
+                { step: "03", title: "Shield", desc: "Il perimetro è attivo. Monitora tutto via cloud tramite la rete Mesh proprietaria." }
+              ].map((item, idx) => (
+                  <div key={idx} className="relative z-10 bg-white p-10 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 text-center">
+                    <span className="text-6xl font-black text-blue-600/10 absolute top-4 left-1/2 -translate-x-1/2">{item.step}</span>
+                    <h4 className="text-2xl font-bold text-slate-900 mb-4 italic tracking-tight relative z-10">{item.title}</h4>
+                    <p className="text-slate-600 italic relative z-10 leading-relaxed">{item.desc}</p>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- CTA SECTION --- */}
+        <section className="py-32 bg-slate-900 relative overflow-hidden">
+          <div className="absolute inset-0 bg-blue-600/5" />
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter mb-8 leading-none">
+              READY TO GO <span className="text-blue-500">OFF-GRID?</span>
             </h2>
-            <p className="text-xl text-slate-700 mb-10 leading-relaxed">
-              Contattaci per progettare un sistema Matrix personalizzato sulle
-              tue esigenze specifiche.
+            <p className="text-2xl text-slate-400 mb-12 max-w-2xl mx-auto italic font-light leading-relaxed">
+              Scopri come il sistema Guardian NRG può rivoluzionare la sicurezza delle tue installazioni remote.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a
-                href="/contatti"
-                className="group inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
-              >
-                Richiedi Consulenza
-                <ChevronRight
-                  className="transition-transform group-hover:translate-x-1"
-                  size={24}
-                />
+              <a href="/contatti" className="bg-blue-600 px-12 py-6 rounded-2xl font-black text-xl text-white hover:bg-white hover:text-blue-600 transition-all shadow-2xl shadow-blue-900/40">
+                Richiedi Preventivo NRG
               </a>
-              <a
-                href="/guardian"
-                className="group inline-flex items-center justify-center gap-3 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-xl"
-              >
-                Scopri Guardian
-                <ChevronRight
-                  className="transition-transform group-hover:translate-x-1"
-                  size={24}
-                />
+              <a href="/guardian" className="bg-transparent border-2 border-white/20 px-12 py-6 rounded-2xl font-black text-xl text-white hover:bg-white/10 transition-all italic">
+                Guarda Modello X-TEN
               </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer className="bg-slate-900 text-white py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <img
-                src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                alt="037 Tecnologia e Sicurezza"
-                className="h-12 w-auto mb-6"
-              />
-              <p className="text-slate-400 leading-relaxed">
-                Leader nell'innovazione per la sicurezza perimetrale
-              </p>
+        {/* --- FOOTER TECNICO --- */}
+        <footer className="bg-slate-950 text-white py-20 border-t border-white/5 font-mono uppercase text-[10px] tracking-widest">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10 opacity-60">
+            <div className="flex items-center gap-4 italic">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              NRG_SYSTEM_ACTIVE // STABLE_POWER
             </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-6">Link Rapidi</h4>
-              <ul className="space-y-3 text-slate-400">
-                <li>
-                  <a
-                    href="/chi-siamo"
-                    className="hover:text-white transition-colors"
-                  >
-                    Chi Siamo
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/guardian"
-                    className="hover:text-white transition-colors"
-                  >
-                    Guardian
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/matrix"
-                    className="hover:text-white transition-colors"
-                  >
-                    Matrix
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/applicazioni"
-                    className="hover:text-white transition-colors"
-                  >
-                    Applicazioni
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/contatti"
-                    className="hover:text-white transition-colors"
-                  >
-                    Contatti
-                  </a>
-                </li>
-              </ul>
+            <div className="flex gap-10">
+              <a href="/chi-siamo" className="hover:text-blue-400 transition-colors underline decoration-blue-500/30">Privacy_Protocol</a>
+              <a href="/contatti" className="hover:text-blue-400 transition-colors underline decoration-blue-500/30">Direct_Access</a>
             </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-6">Contatti</h4>
-              <ul className="space-y-3 text-slate-400">
-                <li>info@037tecnologia.it</li>
-                <li>+39 02 1234 5678</li>
-                <li>Italia</li>
-              </ul>
-            </div>
+            <p>&copy; 037_TECNOLOGIA // {new Date().getFullYear()}</p>
           </div>
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-            <p>
-              &copy; {new Date().getFullYear()} 037 Tecnologia e Sicurezza.
-              Tutti i diritti riservati.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
   );
 }

@@ -87,5 +87,64 @@
     "ctaText": "Explore Guardian and Matrix, our patented technologies for perimeter security.",
     "ctaGuardian": "Discover Guardian",
     "ctaMatrix": "Discover Matrix"
+  },
+  "guardian": {
+    "hero": {
+      "title": "GUARDIAN",
+      "subtitle": "Patented mobile technology station for perimeter security of large areas",
+      "cta": "Request Information"
+    },
+    "description": {
+      "p1": "Guardian is a mobile technology station with its own power and connectivity, compact and inaccessible, with a telescopic column that can reach 13 meters high in seconds.",
+      "p2": "On top are ready-to-use intelligent thermal cameras, radar, and LED lights that allow to see, sense, and record information for local and remote intelligence, and to rationalize and transmit data to multiple security sectors (Dual Use Technologies).",
+      "p3": "Guardian is a patented and fully integrated technological innovation for perimeter security of large areas providing ready-to-use surveillance capabilities."
+    },
+    "features": {
+      "Title": "Technical features",
+      "Radar Integrato": "Advanced radar system for 360° perimeter detection",
+      "Visione Termica": "Intelligent thermal cameras for night vision and anomaly detection",
+      "Autoalimentato": "Autonomous power system with solar panels and high-capacity batteries",
+      "Altezza 13 metri": "Telescopic column that reaches 13m high in a few seconds",
+      "Connettività Propria": "Independent communication system for real-time data transmission",
+      "Dual Use Technologies": "Data storage and rationalization for local and remote intelligence",
+      "Illuminazione LED": "High-power LED lights for complete perimeter illumination",
+      "Compatto e Inaccessibile": "Protected and inaccessible base, resistant to tampering and extreme conditions"
+    },
+    "versions": {
+      "Title": "Available Versions",
+      "guardian": {
+        "title": "GUARDIAN",
+        "description": "Standard version with external power supply. Ideal for permanent or semi-permanent installations with access to electricity.",
+        "features": ["Electric network power supply", "13m telescopic column", "Complete surveillance system"]
+      },
+      "guardian_x_ten": {
+        "title": "GUARDIAN X-TEN",
+        "description": "Fully autonomous self-powered version. Perfect for remote areas, temporary missions, and situations without energy infrastructure.",
+        "features": ["Integrated solar panels", "High-capacity batteries", "Extended autonomy", "Quick installation"]
+      }
+    },
+    "cta": {
+      "title": "Discover how Guardian can protect your areas",
+      "subtitle": "Contact us for a personalized consultation and to learn all technical specifications.",
+      "buttons": {
+        "consult": "Request Consultation",
+        "matrix": "Discover Matrix"
+      }
+    }
+
+  },
+  "footer": {
+    "rapid link": {
+      "title": "Rapid Link",
+      "about": "About us",
+      "application": "Application",
+      "contact": "Contact us"
+    },
+    "contact": {
+      "title": "Contact",
+      "italy": "Italy"
+    },
+    "company": "Leader in perimeter security innovation",
+    "rights": "All rights reserved."
   }
 }

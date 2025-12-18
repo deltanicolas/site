@@ -87,5 +87,63 @@
     "ctaText": "Esplora Guardian e Matrix, le nostre tecnologie brevettate per la sicurezza perimetrale.",
     "ctaGuardian": "Scopri Guardian",
     "ctaMatrix": "Scopri Matrix"
+  },
+  "guardian": {
+    "hero": {
+      "title": "GUARDIAN",
+      "subtitle": "Stazione tecnologica mobile brevettata per la sicurezza perimetrale di aree estese",
+      "cta": "Richiedi Informazioni"
+    },
+    "description": {
+      "p1": "Guardian è una stazione tecnologica mobile con energia e connettività propria, compatta e inaccessibile dalla cui base si eleva una colonna telescopica che può raggiungere i 13 metri di altezza in pochi secondi.",
+      "p2": "Sulla sommità sono pronte e operative telecamere termiche intelligenti, radar e fari a LED che permettono di vedere, sentire e memorizzare informazioni per l'intelligence locale e remota, e razionalizzare e trasmettere dati a più settori della sicurezza (Dual Use Technologies).",
+      "p3": "Guardian è una innovazione tecnologica brevettata e completamente integrata per la sicurezza perimetrale di aree estese che fornisce funzionalità di sorveglianza pronte all'uso."
+    },
+    "features": {
+      "Title": "Caratteristiche Tecniche",
+      "Radar Integrato": "Sistema radar avanzato per rilevamento perimetrale con copertura a 360°",
+      "Visione Termica": "Telecamere termiche intelligenti per visione notturna e rilevamento anomalie",
+      "Autoalimentato": "Sistema energetico autonomo con pannelli solari e batterie ad alta capacità",
+      "Altezza 13 metri": "Colonna telescopica che raggiunge 13m di altezza in pochi secondi",
+      "Connettività Propria": "Sistema di comunicazione indipendente per trasmissione dati in tempo reale",
+      "Dual Use Technologies": "Memorizzazione e razionalizzazione dati per intelligence locale e remota",
+      "Illuminazione LED": "Fari LED ad alta potenza per illuminazione perimetrale completa",
+      "Compatto e Inaccessibile": "Base protetta e inaccessibile, resistente a manomissioni e condizioni estreme"
+    },
+    "versions": {
+      "Title": "Versioni Disponibili",
+      "guardian": {
+        "title": "GUARDIAN",
+        "description": "Versione standard con alimentazione esterna. Ideale per installazioni permanenti o semi-permanenti con accesso alla rete elettrica.",
+        "features": ["Alimentazione da rete elettrica", "Colonna telescopica 13m", "Sistema completo di sorveglianza"]
+      },
+      "guardian_x_ten": {
+        "title": "GUARDIAN X-TEN",
+        "description": "Versione autoalimentata completamente autonoma. Perfetta per zone remote, missioni temporanee e situazioni senza infrastrutture energetiche.",
+        "features": ["Pannelli solari integrati", "Batterie ad alta capacità", "Autonomia estesa", "Installazione rapida"]
+      }
+    },
+    "cta": {
+      "title": "Scopri come Guardian può proteggere le tue aree",
+      "subtitle": "Contattaci per una consulenza personalizzata e per conoscere tutte le specifiche tecniche.",
+      "buttons": {
+        "consult": "Richiedi Consulenza",
+        "matrix": "Scopri Matrix"
+      }
+    }
+  },
+  "footer": {
+    "rapid link": {
+      "title": "Link rapidi",
+      "about": "Chi Siamo",
+      "application": "Applicazioni",
+      "contact": "Contatti"
+    },
+    "contact": {
+      "title": "Cotatti",
+      "italy": "Italia"
+    },
+    "company": "Leader nell'innovazione per la sicurezza perimetrale",
+    "rights": "Tutti i diritti riservati."
   }
 }

@@ -1,18 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe, ShieldCheck, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -24,91 +24,143 @@ export default function Header() {
 
   const navLinks = [
     { href: "/chi-siamo", label: t("home.header.about") },
-    { href: "/guardian", label: t("Guardian XTEN") },
-    { href: "/matrix", label: t("Guardian NRG") },
+    { href: "/guardian", label: "Guardian X-TEN" },
+    { href: "/matrix", label: "Guardian NRG" },
     { href: "/applicazioni", label: t("home.header.application") },
-    { href: "/contatti", label: t("home.header.contact") },
   ];
 
   return (
-      <header
-          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-              isScrolled
-                  ? "bg-slate-900/95 backdrop-blur-lg shadow-2xl"
-                  : "bg-gradient-to-r from-slate-900 to-slate-800"
-          }`}
-      >
-        <nav className="container mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
+      <>
+        <header
+            className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+                isScrolled
+                    ? "py-3 bg-slate-950/80 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                    : "py-6 bg-transparent"
+            }`}
+        >
+          <div className="container mx-auto px-6 flex items-center justify-between">
 
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-3 group">
-              <img
+            {/* --- LOGO AREA --- */}
+            <a href="/" className="relative flex items-center group">
+              <motion.img
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                  alt="037 Tecnologia e Sicurezza"
-                  className="h-20 w-auto transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-2xl"
+                  alt="037 Logo"
+                  className={`transition-all duration-500 object-contain ${
+                      isScrolled ? "h-10" : "h-14"
+                  }`}
               />
+              {/* Status Indicator (Effetto Software) */}
+              <div className="ml-4 hidden sm:flex flex-col border-l border-white/20 pl-4">
+                <span className="text-[10px] font-mono text-blue-400 uppercase tracking-tighter leading-none mb-1">System_Status</span>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]" />
+                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Active_Node</span>
+                </div>
+              </div>
             </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-10">
+            {/* --- DESKTOP NAVIGATION --- */}
+            <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                   <a
                       key={link.href}
                       href={link.href}
-                      className="relative text-white text-xl font-semibold transition-all duration-300 hover:text-blue-400 group py-2"
+                      className="relative px-5 py-2 text-sm font-bold text-white/70 uppercase tracking-widest transition-all hover:text-white group"
                   >
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-300 group-hover:w-full rounded-full"></span>
+                    <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full group-hover:left-0" />
                   </a>
               ))}
+            </nav>
 
-              {/* 🔥 Bottone lingua */}
+            {/* --- ACTIONS (Language & CTA) --- */}
+            <div className="hidden lg:flex items-center gap-6">
+              {/* Language Switcher */}
               <button
                   onClick={toggleLanguage}
-                  className="ml-6 px-4 py-2 rounded-lg border border-white/40 text-white hover:bg-white/20 transition-all duration-300"
+                  className="flex items-center gap-2 text-[11px] font-black text-white/50 hover:text-blue-400 transition-colors border border-white/10 px-3 py-1.5 rounded-md bg-white/5"
               >
-                {i18n.language === "it" ? "EN" : "IT"}
+                <Globe size={14} />
+                {i18n.language.toUpperCase()}
               </button>
+
+              {/* CTA Button */}
+              <a
+                  href="/contatti"
+                  className="group relative flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-900/20 active:scale-95"
+              >
+                <ShieldCheck size={16} className="group-hover:rotate-12 transition-transform" />
+                {t("home.header.contact")}
+              </a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* --- MOBILE TOGGLE --- */}
             <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden text-white p-3 hover:bg-white/20 rounded-xl transition-all duration-300"
+                className="lg:hidden relative z-[110] p-2 text-white bg-white/5 rounded-lg border border-white/10"
             >
-              {mobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
+        </header>
 
-          {/* Mobile Navigation */}
-          <div
-              className={`lg:hidden overflow-hidden transition-all duration-500 ${
-                  mobileMenuOpen ? "max-h-96 mt-8" : "max-h-0"
-              }`}
-          >
-            <div className="flex flex-col gap-4 pb-6">
-              {navLinks.map((link) => (
-                  <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-white text-xl font-semibold py-4 px-6 rounded-xl hover:bg-white/20 transition-all duration-300"
-                  >
-                    {link.label}
-                  </a>
-              ))}
-
-              {/* Bottone lingua mobile */}
-              <button
-                  onClick={toggleLanguage}
-                  className="mx-6 mt-4 px-4 py-3 rounded-xl border border-white/40 text-white hover:bg-white/20 transition"
+        {/* --- MOBILE OVERLAY (FULL SCREEN) --- */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+              <motion.div
+                  initial={{ opacity: 0, x: "100%" }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: "100%" }}
+                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                  className="fixed inset-0 z-[90] bg-slate-950 flex flex-col p-8 pt-32 lg:hidden"
               >
-                {i18n.language === "it" ? "Switch to English" : "Passa a Italiano"}
-              </button>
-            </div>
-          </div>
-        </nav>
-      </header>
+                {/* Background Decor */}
+                <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+
+                <nav className="relative z-10 flex flex-col gap-6">
+                  {navLinks.map((link, idx) => (
+                      <motion.a
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.1 }}
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-4xl font-black text-white uppercase italic tracking-tighter hover:text-blue-500 transition-colors"
+                      >
+                        {link.label}
+                      </motion.a>
+                  ))}
+                  <motion.a
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 }}
+                      href="/contatti"
+                      className="text-4xl font-black text-blue-500 uppercase italic tracking-tighter"
+                  >
+                    {t("home.header.contact")}
+                  </motion.a>
+                </nav>
+
+                <div className="mt-auto relative z-10 flex flex-col gap-8">
+                  <div className="h-[1px] bg-white/10 w-full" />
+                  <button
+                      onClick={toggleLanguage}
+                      className="flex items-center justify-between text-white font-bold uppercase tracking-widest text-sm"
+                  >
+                    <span className="opacity-50 underline">Cambia Lingua</span>
+                    <span className="bg-blue-600 px-4 py-2 rounded-lg">{i18n.language === "it" ? "English" : "Italiano"}</span>
+                  </button>
+                  <div className="text-[10px] text-slate-500 font-mono uppercase tracking-[0.2em]">
+                    Secure_Connection: Established <br />
+                    Node_ID: 037_Main_Server
+                  </div>
+                </div>
+              </motion.div>
+          )}
+        </AnimatePresence>
+      </>
   );
 }

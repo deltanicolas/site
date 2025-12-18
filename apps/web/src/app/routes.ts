@@ -1,12 +1,15 @@
 import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import {
 	type RouteConfigEntry,
 	index,
 	route,
+	// @ts-ignore
 } from '@react-router/dev/routes';
 
+// @ts-ignore
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 type Tree = {
@@ -104,10 +107,15 @@ function generateRoutes(node: Tree): RouteConfigEntry[] {
 
 	return routes;
 }
+// @ts-ignore
 if (import.meta.env.DEV) {
+	// @ts-ignore
 	import.meta.glob('./**/page.jsx', {});
+	// @ts-ignore
 	if (import.meta.hot) {
+		// @ts-ignore
 		import.meta.hot.accept((newSelf) => {
+			// @ts-ignore
 			import.meta.hot?.invalidate();
 		});
 	}

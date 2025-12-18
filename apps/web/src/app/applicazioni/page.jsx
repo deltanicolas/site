@@ -1,60 +1,44 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Header from "../../components/Header";
 import {
-  Menu,
-  X,
   Building2,
   Shield,
   Users,
   Globe,
   ChevronRight,
+  ArrowRight,
+  Radar,
+  Lock,
+  Zap,
+  Target
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 export default function ApplicazioniPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { href: "/chi-siamo", label: "Chi Siamo" },
-    { href: "/guardian", label: "Guardian" },
-    { href: "/matrix", label: "Matrix" },
-    { href: "/applicazioni", label: "Applicazioni" },
-    { href: "/contatti", label: "Contatti" },
-  ];
+  const { t } = useTranslation();
 
   const civilApplications = [
     {
       icon: Building2,
       title: "Infrastrutture Critiche",
-      description:
-        "Protezione di centrali elettriche, impianti di trattamento acque, reti di telecomunicazioni e altre strutture essenziali.",
+      description: "Protezione di centrali elettriche, impianti idrici e reti di telecomunicazioni con sistemi di recinzione virtuale invisibile.",
     },
     {
       icon: Globe,
-      title: "Siti Industriali",
-      description:
-        "Sorveglianza perimetrale di stabilimenti produttivi, depositi petroliferi, zone industriali e aree di stoccaggio.",
+      title: "Poli Industriali",
+      description: "Sorveglianza perimetrale di stabilimenti produttivi e zone di stoccaggio merci ad alto valore.",
     },
     {
       icon: Users,
-      title: "Eventi Pubblici",
-      description:
-        "Sicurezza temporanea per concerti, manifestazioni sportive, eventi politici e grandi raduni.",
+      title: "Grandi Eventi",
+      description: "Sicurezza temporanea ad alto impatto per concerti, manifestazioni e raduni pubblici in spazi aperti.",
     },
     {
-      icon: Shield,
+      icon: Target,
       title: "Zone Sensibili",
-      description:
-        "Controllo di confini, porti, aeroporti, ambasciate e altre aree che richiedono massima sicurezza.",
+      description: "Controllo accessi e monitoraggio costante per porti, aeroporti e sedi diplomatiche.",
     },
   ];
 
@@ -62,288 +46,194 @@ export default function ApplicazioniPage() {
     {
       icon: Shield,
       title: "Basi Operative",
-      description:
-        "Protezione perimetrale di basi militari, FOB (Forward Operating Base) e installazioni strategiche.",
+      description: "Protezione perimetrale di FOB (Forward Operating Base) e installazioni strategiche in territori ostili.",
     },
     {
-      icon: Globe,
+      icon: Radar,
       title: "Zone di Conflitto",
-      description:
-        "Sorveglianza avanzata in aree di guerra, zone di peacekeeping e missioni internazionali.",
+      description: "Sorveglianza avanzata AI-driven per missioni di peacekeeping e monitoraggio confini.",
     },
     {
-      icon: Building2,
+      icon: Zap,
       title: "Missioni Tattiche",
-      description:
-        "Deploy rapido per operazioni speciali, posti di comando mobili e zone di operazione temporanee.",
+      description: "Deploy rapido per posti di comando mobili e zone di operazione temporanee senza rete elettrica.",
     },
     {
-      icon: Users,
+      icon: Lock,
       title: "Force Protection",
-      description:
-        "Protezione di convoli, accampamenti militari e personale in zone ad alto rischio.",
+      description: "Sistemi anti-intrusione per la protezione di convogli e personale in aree ad alto rischio.",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-slate-900/95 backdrop-blur-lg shadow-2xl"
-            : "bg-gradient-to-r from-slate-900 to-slate-800"
-        }`}
-      >
-        <nav className="container mx-auto px-6 py-5">
-          <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3 group">
-              <img
-                src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                alt="037 Tecnologia e Sicurezza"
-                className="h-16 w-auto transition-transform duration-300 group-hover:scale-105"
-              />
-            </a>
-            <div className="hidden lg:flex gap-10">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="relative text-white text-lg font-medium transition-all duration-300 hover:text-blue-400 group"
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ))}
-            </div>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-300"
+      <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+        <Header />
+
+        {/* --- HERO SECTION --- */}
+        <section className="relative pt-40 pb-24 bg-slate-900 text-white overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:30px_30px]" />
+
+          <div className="container mx-auto px-6 relative z-10">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-4xl"
             >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-          <div
-            className={`lg:hidden overflow-hidden transition-all duration-500 ${
-              mobileMenuOpen ? "max-h-96 mt-6" : "max-h-0"
-            }`}
-          >
-            <div className="flex flex-col gap-4 pb-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-white text-lg font-medium py-3 px-4 rounded-lg hover:bg-white/10 transition-all duration-300 hover:translate-x-2"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-6xl md:text-7xl font-bold mb-8">
-              Applicazioni
-            </h1>
-            <p className="text-2xl font-light leading-relaxed">
-              I nostri sistemi servono settori civili e militari con soluzioni
-              su misura
-            </p>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
-      </section>
-
-      {/* Applicazioni Civili */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-5xl font-bold text-slate-900 mb-6 text-center">
-            Applicazioni Civili
-          </h2>
-          <p className="text-xl text-slate-700 mb-16 text-center max-w-4xl mx-auto">
-            Applicazioni corporate per sistemi di recinzione virtuale al fine di
-            garantire l'operatore e l'operato.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {civilApplications.map((app, index) => {
-              const Icon = app.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-14 h-14 bg-blue-600 rounded-lg flex items-center justify-center mb-5">
-                    <Icon className="text-white" size={28} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                    {app.title}
-                  </h3>
-                  <p className="text-slate-700 leading-relaxed">
-                    {app.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Applicazioni Militari */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-5xl font-bold text-slate-900 mb-6 text-center">
-            Applicazioni Militari
-          </h2>
-          <p className="text-xl text-slate-700 mb-16 text-center max-w-4xl mx-auto">
-            Applicazioni in ambiti rischiosi per sistemi di sicurezza
-            perimetrale, garantendo sempre la massima affidabilità.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {militaryApplications.map((app, index) => {
-              const Icon = app.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  <div className="w-14 h-14 bg-slate-900 rounded-lg flex items-center justify-center mb-5">
-                    <Icon className="text-white" size={28} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                    {app.title}
-                  </h3>
-                  <p className="text-slate-700 leading-relaxed">
-                    {app.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Quote Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <blockquote className="text-3xl md:text-4xl italic font-light mb-8 leading-relaxed">
-              "Ogni individuo ha diritto alla vita, alla libertà e alla
-              sicurezza della propria persona."
-            </blockquote>
-            <footer className="text-lg text-blue-300">
-              — Dichiarazione Universale dei Diritti dell'Uomo, Articolo 3, 1948
-            </footer>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl font-bold text-slate-900 mb-8">
-              Hai un progetto specifico?
-            </h2>
-            <p className="text-xl text-slate-700 mb-10 leading-relaxed">
-              Contattaci per discutere come Guardian e Matrix possono essere
-              adattati alle tue esigenze particolari.
-            </p>
-            <a
-              href="/contatti"
-              className="group inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105"
-            >
-              Contattaci
-              <ChevronRight
-                className="transition-transform group-hover:translate-x-1"
-                size={24}
-              />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <img
-                src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                alt="037 Tecnologia e Sicurezza"
-                className="h-12 w-auto mb-6"
-              />
-              <p className="text-slate-400 leading-relaxed">
-                Leader nell'innovazione per la sicurezza perimetrale
+            <span className="text-blue-500 font-black uppercase tracking-[0.4em] text-xs mb-4 block italic">
+              Operational Scenarios
+            </span>
+              <h1 className="text-6xl md:text-8xl font-black mb-8 italic tracking-tighter leading-none">
+                SETTORI DI <span className="text-blue-500">IMPIEGO</span>
+              </h1>
+              <p className="text-2xl md:text-3xl font-light text-slate-400 leading-relaxed italic">
+                Dalla protezione di asset industriali alla difesa di obiettivi strategici nazionali.
               </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* --- CIVIL APPLICATIONS (White Style) --- */}
+        <section className="py-32 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
+              <div className="max-w-2xl">
+                <h2 className="text-5xl font-black text-slate-900 italic tracking-tighter uppercase mb-6">
+                  Ambito <span className="text-blue-600 font-light">Civile</span>
+                </h2>
+                <p className="text-xl text-slate-500 italic font-light">
+                  Recinzioni virtuali e sistemi AI per garantire la continuità operativa del business e la sicurezza delle persone.
+                </p>
+              </div>
+              <div className="hidden lg:block h-[1px] flex-grow mx-12 bg-slate-100 mb-6" />
             </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-6">Link Rapidi</h4>
-              <ul className="space-y-3 text-slate-400">
-                <li>
-                  <a
-                    href="/chi-siamo"
-                    className="hover:text-white transition-colors"
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {civilApplications.map((app, index) => (
+                  <div
+                      key={index}
+                      className="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500"
                   >
-                    Chi Siamo
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/guardian"
-                    className="hover:text-white transition-colors"
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:rotate-6 transition-transform">
+                      <app.icon size={32} />
+                    </div>
+                    <h3 className="text-3xl font-black text-slate-900 mb-4 italic tracking-tighter uppercase">
+                      {app.title}
+                    </h3>
+                    <p className="text-slate-600 text-lg leading-relaxed italic">
+                      {app.description}
+                    </p>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- MILITARY APPLICATIONS (Dark Style) --- */}
+        <section className="py-32 bg-slate-900 text-white relative overflow-hidden">
+          {/* Pattern radar decorativo */}
+          <div className="absolute top-1/2 right-0 w-1/2 h-full bg-[repeating-conic-gradient(from_0deg,#3b82f610_0deg_10deg,transparent_10deg_20deg)] opacity-20 pointer-events-none" />
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="flex flex-col lg:flex-row-reverse justify-between items-end mb-20 gap-8 text-right">
+              <div className="max-w-2xl">
+                <h2 className="text-5xl font-black text-white italic tracking-tighter uppercase mb-6">
+                  Ambito <span className="text-blue-500 font-light">Militare</span>
+                </h2>
+                <p className="text-xl text-slate-400 italic font-light">
+                  Affidabilità estrema in condizioni critiche. Tecnologia "Dual-Use" progettata per la protezione delle forze.
+                </p>
+              </div>
+              <div className="hidden lg:block h-[1px] flex-grow mx-12 bg-white/10 mb-6" />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
+              {militaryApplications.map((app, index) => (
+                  <div
+                      key={index}
+                      className="group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600 transition-all duration-500"
                   >
-                    Guardian
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/matrix"
-                    className="hover:text-white transition-colors"
-                  >
-                    Matrix
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/applicazioni"
-                    className="hover:text-white transition-colors"
-                  >
-                    Applicazioni
-                  </a>
-                </li>
-                <li>
-                  <a
+                    <div className="w-16 h-16 bg-white text-slate-900 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform">
+                      <app.icon size={32} />
+                    </div>
+                    <h3 className="text-3xl font-black text-white mb-4 italic tracking-tighter uppercase">
+                      {app.title}
+                    </h3>
+                    <p className="text-slate-400 group-hover:text-white/80 text-lg leading-relaxed italic transition-colors">
+                      {app.description}
+                    </p>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- QUOTE SECTION: THE MISSION --- */}
+        <section className="py-40 bg-white text-center">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <span className="text-blue-600 text-6xl font-serif mb-8 block opacity-20">"</span>
+              <blockquote className="text-4xl md:text-5xl font-black text-slate-900 italic tracking-tighter leading-tight mb-12 uppercase">
+                Ogni individuo ha diritto alla vita, alla libertà e alla sicurezza della propria persona.
+              </blockquote>
+              <div className="h-[2px] w-24 bg-blue-600 mx-auto mb-6" />
+              <footer className="text-sm font-mono tracking-widest text-slate-400 uppercase">
+                Articolo 3 // Dichiarazione Universale dei Diritti dell'Uomo
+              </footer>
+            </div>
+          </div>
+        </section>
+
+        {/* --- CTA: CUSTOM SOLUTIONS --- */}
+        <section className="pb-32 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-white text-center relative overflow-hidden">
+              <div className="relative z-10">
+                <h2 className="text-5xl md:text-7xl font-black italic tracking-tighter mb-8 uppercase">
+                  Hai un progetto <span className="text-blue-500">Specifico?</span>
+                </h2>
+                <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto italic font-light">
+                  Le nostre unità Guardian e NRG sono modulari. Contattaci per una consulenza tecnica su misura per il tuo scenario operativo.
+                </p>
+                <a
                     href="/contatti"
-                    className="hover:text-white transition-colors"
-                  >
-                    Contatti
-                  </a>
-                </li>
-              </ul>
+                    className="inline-flex items-center justify-center gap-4 bg-blue-600 hover:bg-blue-500 px-12 py-6 rounded-2xl font-black text-xl transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-blue-600/20"
+                >
+                  RICHIEDI CONSULENZA
+                  <ArrowRight size={24} />
+                </a>
+              </div>
+              {/* Elemento grafico HUD decorativo */}
+              <div className="absolute -bottom-20 -right-20 w-80 h-80 border-[20px] border-white/5 rounded-full" />
             </div>
+          </div>
+        </section>
+
+        {/* --- FOOTER --- */}
+        <footer className="bg-slate-950 text-white py-20 border-t border-white/5">
+          <div className="container mx-auto px-6 grid md:grid-cols-3 gap-16">
             <div>
-              <h4 className="font-semibold text-lg mb-6">Contatti</h4>
-              <ul className="space-y-3 text-slate-400">
-                <li>info@037tecnologia.it</li>
-                <li>+39 02 1234 5678</li>
-                <li>Italia</li>
-              </ul>
+              <img
+                  src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
+                  alt="037 Logo"
+                  className="h-8 mb-8"
+              />
+              <p className="text-slate-500 italic text-sm">Leader nell'innovazione per la sicurezza perimetrale attraverso sistemi autonomi AI-driven.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-8 col-span-2 uppercase font-black text-[10px] tracking-widest">
+              <div className="space-y-4">
+                <p className="text-blue-500">Navigazione</p>
+                <a href="/chi-siamo" className="block hover:text-blue-400">Company_Profile</a>
+                <a href="/guardian" className="block hover:text-blue-400">Guardian_XTEN</a>
+                <a href="/matrix" className="block hover:text-blue-400">Guardian_NRG</a>
+              </div>
+              <div className="space-y-4">
+                <p className="text-blue-500">Contatti</p>
+                <p className="text-slate-400">info@037tecnologia.it</p>
+                <p className="text-slate-400">+39 02 1234 5678</p>
+              </div>
             </div>
           </div>
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-            <p>
-              &copy; {new Date().getFullYear()} 037 Tecnologia e Sicurezza.
-              Tutti i diritti riservati.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
   );
 }
