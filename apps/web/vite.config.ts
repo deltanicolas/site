@@ -1,14 +1,13 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react"; // AGGIUNTO: Mancava questo import
+import tsconfigPaths from "vite-tsconfig-paths"; // CORRETTO: Tolto "/dist"
+import path from "node:path";
 
 export default defineConfig({
-  // Plugin standard React, niente magie
   plugins: [react(), tsconfigPaths()],
 
-  // Percorso relativo per assets (fondamentale per GitHub Pages/host statici)
-  base: './',
+  // CORRETTO: Base assoluta per evitare errori 404 su URL profondi
+  base: '/',
 
   resolve: {
     alias: {
@@ -16,7 +15,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist', // Output standard
+    outDir: 'dist',
     emptyOutDir: true,
   }
 });

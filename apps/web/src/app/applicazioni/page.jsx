@@ -52,7 +52,6 @@ export default function ApplicazioniPage() {
 
   return (
       <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-900 selection:text-white">
-        <Header />
 
         {/* ===================== 1. HERO SECTION (Immersive) ===================== */}
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-slate-900 text-white overflow-hidden">

@@ -1,21 +1,28 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-// 1. CAMBIA HashRouter in BrowserRouter
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
+// STILI
 import './app/global.css';
-import Header from './components/Header'; // Assicurati che il percorso sia giusto
 
-// 2. Import della 404.
-// Se il file è src/_create/not_found.jsx (o .js), questo percorso è corretto se main.jsx è in src/
+// COMPONENTI
+// Assicurati che Header.jsx sia dentro src/components/
+import Header from './components/Header';
+// Assicurati di aver creato il file ScrollToTop.jsx nel PASSO 1
+import ScrollToTop from './components/ScrollToTop';
+
+// PAGINA 404
+// Percorso preso dal tuo codice originale
 import NotFound from './app/__create/not-found.tsx';
 
+// --- LAYOUT ---
+// L'Header sta SOLO qui
 const Layout = () => {
     return (
         <div className="main-wrapper">
             <Header />
             <div className="app-container">
-                <Suspense fallback={<div>Caricamento...</div>}>
+                <Suspense fallback={<div style={{padding: 20, color: 'white'}}>Loading...</div>}>
                     <Outlet />
                 </Suspense>
             </div>
@@ -24,12 +31,14 @@ const Layout = () => {
 };
 
 function AppRoutes() {
-    const pages = import.meta.glob('./app/**/page.jsx', { eager: true });
+    // Cerca sia file .jsx che .tsx
+    const pages = import.meta.glob('./app/**/page.{jsx,tsx}', { eager: true });
 
     const routes = Object.keys(pages).map((path) => {
         const name = path
-            .replace(/^\.\/app/, '')
-            .replace(/\/page\.jsx$/, '');
+            .replace(/^\.\/app/, '')           // Rimuove ./app
+            .replace(/\/page\.(jsx|tsx)$/, ''); // Rimuove /page.jsx o /page.tsx
+
         const routePath = name === '' ? '/' : name;
 
         // @ts-ignore
@@ -42,11 +51,11 @@ function AppRoutes() {
     return (
         <Routes>
             <Route element={<Layout />}>
+                {/* 1. Rotte generate automaticamente */}
                 {routes}
 
-                {/* 3. FIX PAGINA BIANCA 404 */}
-                {/* Se NotFound è undefined (import sbagliato), usiamo un fallback */}
-                <Route path="*" element={ NotFound ? <NotFound /> : <h1>ERRORE: Controlla export pagina 404</h1> } />
+                {/* 2. Rotta 404 */}
+                <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
     );
@@ -54,8 +63,9 @@ function AppRoutes() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        {/* Usa BrowserRouter per URL puliti senza # */}
         <BrowserRouter>
+            {/* Questo risolve il problema dello scroll e dell'header */}
+            <ScrollToTop />
             <AppRoutes />
         </BrowserRouter>
     </React.StrictMode>

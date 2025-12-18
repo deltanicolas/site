@@ -30,7 +30,7 @@ export default function GuardianNRGPage() {
 
   return (
       <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-emerald-900 selection:text-white">
-        <Header />
+
 
         {/* ===================== 1. HERO SECTION (Dark & Energy Focused) ===================== */}
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-slate-950 overflow-hidden">

@@ -22,7 +22,6 @@ export default function HomePage() {
 
   return (
       <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-900 selection:text-white">
-        <Header />
 
         {/* ===================== 1. HERO SECTION (Immagine Grande & Impatto) ===================== */}
         <section className="relative h-screen min-h-[700px] flex items-center bg-slate-900 overflow-hidden">

@@ -49,7 +49,6 @@ export default function ContattiPage() {
 
   return (
       <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-900 selection:text-white">
-        <Header />
 
         {/* ===================== 1. HERO Istituzionale ===================== */}
         <section className="relative pt-32 pb-24 bg-slate-900 text-white">

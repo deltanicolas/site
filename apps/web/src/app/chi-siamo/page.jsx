@@ -2,14 +2,8 @@
 
 import Header from "../../components/Header";
 import {
-  ChevronRight,
-  Target,
-  Lightbulb,
-  Shield,
-  History,
-  Users,
-  Zap,
-  ArrowRight
+  Settings, PenTool, Wrench, Layers,
+  ArrowRight, CheckCircle2, ChevronRight
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -17,221 +11,206 @@ import { motion } from "framer-motion";
 export default function ChiSiamoPage() {
   const { t } = useTranslation();
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
   return (
-      <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+      <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-900 selection:text-white">
         <Header />
 
-        {/* --- HERO SECTION: Identità Tattica --- */}
-        <section className="relative pt-40 pb-24 bg-slate-900 text-white overflow-hidden">
-          {/* Pattern di sfondo tecnico */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(#00f0ff30_1px,transparent_1px)] [background-size:40px_40px]" />
+        {/* ===================== 1. HERO SECTION (Immersive & Centrata) ===================== */}
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-slate-900 text-white overflow-hidden">
+
+          {/* Immagine di sfondo (Engineering/Assembly) */}
+          <div className="absolute inset-0 z-0">
+            {/* Overlay scuro per leggibilità */}
+            <div className="absolute inset-0 bg-slate-900/80 z-10"></div>
+            <img
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=2070"
+                alt="Engineering Assembly"
+                className="w-full h-full object-cover grayscale opacity-40"
+            />
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-4xl">
-              <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-              >
-              <span className="text-blue-500 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">
-                Deep Tech & Security
-              </span>
-                <h1 className="text-6xl md:text-8xl font-black mb-8 italic tracking-tighter leading-none">
-                  {t("about.heroTitle")}
-                </h1>
-                <p className="text-2xl md:text-3xl font-light leading-relaxed text-slate-400 max-w-2xl">
-                  {t("about.heroSubtitle")}
-                </p>
-              </motion.div>
-            </div>
-          </div>
+          <div className="container mx-auto px-6 lg:px-12 relative z-20 text-center">
+            <motion.div initial="hidden" animate="visible" variants={fadeIn} className="max-w-4xl mx-auto">
+              {/* Badge */}
+              <span className="inline-block py-1 px-3 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+                  System Integrator
+                </span>
 
-          {/* Elemento grafico decorativo */}
-          <div className="absolute top-1/2 right-0 w-1/3 h-[2px] bg-gradient-to-r from-transparent to-blue-500 hidden lg:block" />
-        </section>
+              {/* Titolone */}
+              <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-6 tracking-tight leading-none">
+                Ideazione & <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white">
+                    Assemblaggio.
+                  </span>
+              </h1>
 
-        {/* --- PHILOSOPHY SECTION: Lo Storytelling --- */}
-        <section className="py-32 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-slate-100 rounded-3xl rotate-2 transition-transform group-hover:rotate-0" />
-                <img
-                    src="https://ucarecdn.com/942e5f47-06cc-41e9-bb3c-475f47748d8f/-/format/auto/"
-                    alt="Tech office"
-                    className="relative rounded-2xl shadow-2xl z-10 grayscale hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute bottom-6 right-6 z-20 bg-blue-600 text-white p-6 rounded-xl shadow-xl">
-                  <p className="text-3xl font-bold">15+</p>
-                  <p className="text-xs uppercase tracking-widest font-bold">Anni di Innovazione</p>
-                </div>
+              {/* Sottotitolo */}
+              <p className="text-xl text-slate-300 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
+                Non siamo un semplice rivenditore. 037 seleziona le migliori tecnologie globali e le integra in soluzioni uniche, progettate per rispondere a esigenze specifiche.
+              </p>
+
+              {/* Tasto CTA Hero */}
+              <div className="flex justify-center">
+                <a href="#workflow" className="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-8 py-4 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/50">
+                  Il Nostro Metodo <ArrowRight size={18}/>
+                </a>
               </div>
-
-              <div className="space-y-8">
-                <h2 className="text-4xl font-bold text-slate-900 italic tracking-tight">
-                  Oltre la semplice sorveglianza.
-                </h2>
-                <div className="space-y-6 text-xl text-slate-600 leading-relaxed font-light">
-                  <p className="border-l-4 border-blue-600 pl-6 italic">{t("about.p1")}</p>
-                  <p>{t("about.p2")}</p>
-                  <p>{t("about.p3")}</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-6 pt-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-blue-600">
-                      <History size={20} />
-                    </div>
-                    <span className="text-sm font-bold uppercase text-slate-800">Evoluzione Continua</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-blue-600">
-                      <Users size={20} />
-                    </div>
-                    <span className="text-sm font-bold uppercase text-slate-800">Team Certificato</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* --- VALUES SECTION: I Pilastri --- */}
-        <section className="py-32 bg-slate-50">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="text-5xl font-bold text-slate-900 mb-6 italic tracking-tight">
-                {t("about.valuesTitle")}
-              </h2>
-              <div className="h-1 w-20 bg-blue-600 mx-auto" />
+        {/* ===================== 2. IL METODO (Workflow) ===================== */}
+        <section className="py-24 bg-slate-50 relative border-b border-slate-200" id="workflow">
+          {/* Griglia tecnica leggera sfondo */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:60px_60px] opacity-40"></div>
+
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Dal Concetto alla Realtà</h2>
+              <p className="text-slate-600 text-lg">
+                Il nostro valore aggiunto è nella capacità di unire componenti eterogenei in un sistema organico e funzionale.
+              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {/* Card Valore 1 */}
-              <div className="group bg-white p-12 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[5rem] -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-slate-900 text-blue-400 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    <Target size={32} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-tighter italic">
-                    {t("about.experienceTitle")}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed text-lg">
-                    {t("about.experienceText")}
-                  </p>
+              {/* STEP 1 */}
+              <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-blue-400 transition-all group hover:-translate-y-1">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <PenTool size={28} />
                 </div>
-              </div>
-
-              {/* Card Valore 2 */}
-              <div className="group bg-white p-12 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[5rem] -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-slate-900 text-blue-400 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    <Lightbulb size={32} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-tighter italic">
-                    {t("about.innovationTitle")}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed text-lg">
-                    {t("about.innovationText")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Card Valore 3 */}
-              <div className="group bg-white p-12 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[5rem] -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-slate-900 text-blue-400 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    <Shield size={32} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-tighter italic">
-                    {t("about.reliabilityTitle")}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed text-lg">
-                    {t("about.reliabilityText")}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- VISION SECTION: Quote Motivazionale --- */}
-        <section className="py-32 bg-slate-900 text-center relative">
-          <div className="container mx-auto px-6">
-            <Zap className="text-blue-500 mx-auto mb-8 animate-pulse" size={48} />
-            <h2 className="text-4xl md:text-6xl font-light text-white max-w-5xl mx-auto leading-tight italic">
-              "La nostra missione è ridefinire il concetto di <span className="text-blue-500 font-bold">sicurezza invisibile</span> attraverso l'intelligenza artificiale e l'eccellenza meccanica."
-            </h2>
-            <p className="mt-12 text-blue-500 font-bold uppercase tracking-[0.4em] text-sm italic">— Board of Directors, 037</p>
-          </div>
-        </section>
-
-        {/* --- CTA SECTION: Conversione --- */}
-        <section className="py-32 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="bg-blue-600 rounded-[3rem] p-12 md:p-24 text-white flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden shadow-[0_30px_60px_-12px_rgba(37,99,235,0.45)]">
-              <div className="absolute top-0 right-0 w-1/2 h-full bg-white opacity-5 skew-x-12 translate-x-1/4" />
-
-              <div className="relative z-10 max-w-2xl text-center lg:text-left">
-                <h2 className="text-5xl font-black mb-6 italic tracking-tighter">
-                  {t("about.ctaTitle")}
-                </h2>
-                <p className="text-xl text-blue-100 font-light italic">
-                  {t("about.ctaText")}
+                <h3 className="text-xl font-bold text-slate-900 mb-3">1. Ideazione</h3>
+                <p className="text-slate-500 leading-relaxed">
+                  Analizziamo lo scenario operativo e disegniamo la configurazione ideale, scegliendo i sensori e le ottiche più adatte al caso d'uso specifico.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 relative z-10">
-                <a href="/guardian" className="group flex items-center justify-center gap-3 bg-slate-900 hover:bg-black px-10 py-5 rounded-2xl font-bold transition-all hover:scale-105">
-                  {t("about.ctaGuardian")}
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a href="/matrix" className="group flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md px-10 py-5 rounded-2xl font-bold border-2 border-white/30 transition-all hover:scale-105">
-                  {t("about.ctaMatrix")}
-                  <ChevronRight size={24} />
-                </a>
+              {/* STEP 2 */}
+              <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-blue-400 transition-all group hover:-translate-y-1">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <Wrench size={28} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">2. Assemblaggio</h3>
+                <p className="text-slate-500 leading-relaxed">
+                  Integriamo le componenti hardware nei nostri chassis, curando cablaggi, alimentazione e dissipazione per garantire la massima affidabilità.
+                </p>
+              </div>
+
+              {/* STEP 3 */}
+              <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-blue-400 transition-all group hover:-translate-y-1">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <Settings size={28} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">3. Configurazione</h3>
+                <p className="text-slate-500 leading-relaxed">
+                  Programmiamo il software e calibriamo i sistemi di analisi video affinché l'hardware lavori in perfetta sinergia.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* --- FOOTER --- */}
-        <footer className="bg-slate-950 text-white py-20 border-t border-white/5">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-12 mb-16">
-              <div className="col-span-2">
-                <img
-                    src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
-                    alt="037 Tecnologia e Sicurezza"
-                    className="h-10 w-auto mb-8"
-                />
-                <p className="text-slate-400 text-lg max-w-sm italic leading-relaxed">
-                  Evoluzione tecnologica e protezione perimetrale avanzata. Progettato e coordinato in Italia.
+        {/* ===================== 3. DEEP DIVE (Sezione Scura) ===================== */}
+        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+          {/* Decoro laterale */}
+          <div className="absolute right-0 top-0 h-full w-1/3 bg-slate-800/20 -skew-x-12 transform translate-x-20"></div>
+
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <div className="flex flex-col lg:flex-row items-center gap-20">
+
+              {/* Immagine Tecnica */}
+              <div className="lg:w-1/2 order-2 lg:order-1 relative">
+                <div className="relative bg-slate-800 p-1 rounded-xl border border-slate-700 shadow-2xl">
+                  <img
+                      src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"
+                      alt="Technical Integration"
+                      className="rounded-lg opacity-80"
+                  />
+                  {/* Overlay Informativo */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-slate-900/90 backdrop-blur border border-slate-600 p-4 rounded-lg">
+                    <div className="flex items-center gap-3 mb-1">
+                      <Layers className="text-blue-500" size={18}/>
+                      <span className="font-bold text-sm">Hardware Agnostic</span>
+                    </div>
+                    <p className="text-xs text-slate-400">
+                      Non siamo legati a un singolo brand. Scegliamo solo il meglio per il tuo progetto.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testo */}
+              <div className="lg:w-1/2 order-1 lg:order-2">
+                <div className="inline-block px-3 py-1 bg-blue-900/50 border border-blue-500/30 rounded text-blue-400 text-xs font-bold uppercase tracking-widest mb-4">
+                  Philosophy
+                </div>
+                <h2 className="text-4xl font-bold mb-6">L'arte dell'integrazione.</h2>
+                <p className="text-slate-300 mb-8 leading-relaxed text-lg font-light">
+                  Creare un sistema di sicurezza complesso richiede più della somma delle parti.
+                  Richiede la conoscenza profonda di come ogni sensore, telecamera e modulo di trasmissione dialoga con gli altri.
+                  <br/><br/>
+                  Noi di 037 ci poniamo come unico interlocutore tecnico, trasformando tecnologie disparate in una soluzione "chiavi in mano", pronta all'uso.
                 </p>
               </div>
-              <div>
-                <h4 className="font-bold text-lg mb-6 text-blue-500 uppercase tracking-widest">Contatti</h4>
-                <ul className="space-y-3 text-slate-400 italic">
-                  <li>info@037tecnologia.it</li>
-                  <li>+39 02 1234 5678</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-lg mb-6 text-blue-500 uppercase tracking-widest">Area Legale</h4>
-                <ul className="space-y-3 text-slate-400 italic">
-                  <li>Privacy Policy</li>
-                  <li>Cookie Policy</li>
-                </ul>
-              </div>
+
             </div>
-            <div className="border-t border-white/5 pt-10 text-center text-slate-500 text-sm">
-              <p>&copy; {new Date().getFullYear()} 037 Tecnologia e Sicurezza. Tutti i diritti riservati.</p>
+          </div>
+        </section>
+
+        {/* ===================== 4. OPERATIONAL AREAS ===================== */}
+        <section className="py-24 bg-white border-t border-slate-200">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-slate-900">Settori di Intervento</h2>
+              <p className="text-slate-500 mt-2">Le nostre integrazioni trovano applicazione dove l'affidabilità è critica.</p>
             </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {['Cantieri Complessi', 'Eventi Pubblici', 'Aree Industriali', 'Logistica Portuale'].map((sector, i) => (
+                  <div key={i} className="group relative h-40 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-center justify-center overflow-hidden hover:border-blue-400 hover:shadow-lg transition-all">
+                    <CheckCircle2 className="text-slate-300 mb-3 group-hover:text-blue-500 transition-colors" size={24}/>
+                    <span className="font-bold text-slate-700 text-lg group-hover:text-blue-600 transition-colors z-10">{sector}</span>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===================== 5. CTA (Brand Blue) ===================== */}
+        <section className="py-24 bg-blue-700 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          {/* Forme decorative */}
+          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-blue-600 rounded-full blur-3xl"></div>
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
+
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Costruiamo la tua soluzione.</h2>
+            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
+              Hai un'esigenza specifica che richiede un assemblaggio custom? Parliamone.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a href="/contatti" className="bg-white text-blue-700 font-bold px-10 py-4 rounded-xl hover:bg-slate-100 transition-colors shadow-xl">
+                Contattaci Ora
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-white text-lg">037</span>
+            </div>
+            <div className="flex gap-8 font-medium">
+              <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
+              <a href="/contatti" className="hover:text-white transition-colors">Contatti</a>
+            </div>
+            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
           </div>
         </footer>
       </div>
