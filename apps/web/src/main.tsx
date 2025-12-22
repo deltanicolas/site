@@ -9,7 +9,7 @@ import './app/global.css';
 
 // COMPONENTI
 import Header from './components/Header';
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
 import ScrollToTop from './components/ScrollToTop';
 
 // @ts-ignore
