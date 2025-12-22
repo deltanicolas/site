@@ -1,6 +1,4 @@
 "use client";
-
-import Header from "../../components/Header";
 import {
   Radar, Eye, Zap, Radio, Maximize2, Camera, Sun, Lock,
   ArrowRight, Download, Layers, ShieldCheck

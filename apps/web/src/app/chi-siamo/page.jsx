@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import circuitoGuardian from "../../images/circuitiGuardian.jpg";
 
 export default function ChiSiamoPage() {
   const { t } = useTranslation();
@@ -107,7 +108,7 @@ export default function ChiSiamoPage() {
               <div className="lg:w-1/2 order-2 lg:order-1 relative">
                 <div className="relative bg-slate-800 p-1 rounded-xl border border-slate-700 shadow-2xl">
                   <img
-                      src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"
+                      src={circuitoGuardian}
                       alt="Technical Integration"
                       className="rounded-lg opacity-80"
                   />

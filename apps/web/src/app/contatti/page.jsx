@@ -6,12 +6,12 @@ import {
   CheckCircle2, Globe, Users,
   Briefcase, Wrench, ArrowRight
 } from "lucide-react";
-import Header from "../../components/Header";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 export default function ContattiPage() {
   const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     department: "sales",
     name: "",
@@ -19,6 +19,8 @@ export default function ContattiPage() {
     email: "",
     phone: "",
     message: "",
+    privacyAccepted: false, // 1. Aggiunto campo stato per la privacy
+    botcheck: false
   });
 
   const [formStatus, setFormStatus] = useState({
@@ -27,21 +29,83 @@ export default function ContattiPage() {
     error: null,
   });
 
+  // --- LOGICA DI INVIO (WEB3FORMS) ---
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Controllo anti-spam (Honeypot)
+    if (formData.botcheck) return;
+
+    // 2. Controllo validazione Privacy
+    if (!formData.privacyAccepted) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error: "Per inviare il messaggio devi accettare la Privacy Policy."
+      });
+      return;
+    }
+
     setFormStatus({ loading: true, success: false, error: null });
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setFormStatus({ loading: false, success: false, error: "API Key mancante. Controlla il file .env" });
+      return;
+    }
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setFormStatus({ loading: false, success: true, error: null });
-      setFormData({ department: "sales", name: "", company: "", email: "", phone: "", message: "" });
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `Richiesta dal sito - Reparto: ${formData.department}`,
+          from_name: "037 Website Contact",
+          ...formData,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus({ loading: false, success: true, error: null });
+        // Reset del form
+        setFormData({
+          department: "sales",
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          message: "",
+          privacyAccepted: false,
+          botcheck: false
+        });
+
+        // Nascondi il messaggio di successo dopo 5 secondi
+        setTimeout(() => setFormStatus(prev => ({ ...prev, success: false })), 5000);
+      } else {
+        throw new Error(result.message || "Qualcosa è andato storto.");
+      }
+
     } catch (error) {
-      setFormStatus({ loading: false, success: false, error: "Errore durante l'invio." });
+      console.error(error);
+      setFormStatus({
+        loading: false,
+        success: false,
+        error: "Si è verificato un errore durante l'invio. Riprova più tardi."
+      });
     }
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // Gestione corretta per checkbox vs input testuali
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const fadeIn = {
@@ -170,6 +234,16 @@ export default function ContattiPage() {
                 <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100">
                   <form onSubmit={handleSubmit} className="space-y-6">
 
+                    {/* HONEYPOT ANTI-SPAM (Nascosto) */}
+                    <input
+                        type="checkbox"
+                        name="botcheck"
+                        className="hidden"
+                        style={{ display: 'none' }}
+                        checked={formData.botcheck}
+                        onChange={handleChange}
+                    />
+
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.dept')}</label>
                       <div className="relative">
@@ -250,26 +324,52 @@ export default function ContattiPage() {
                       />
                     </div>
 
-                    <button
-                        type="submit"
-                        disabled={formStatus.loading || formStatus.success}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                    >
-                      {formStatus.loading ? (
-                          <Loader2 className="animate-spin" />
-                      ) : formStatus.success ? (
-                          <> {t('contact.form.success_title')} <CheckCircle2 size={20}/></>
-                      ) : (
-                          <> {t('contact.form.submit')} <Send size={18} /></>
+                    {/* 3. CHECKBOX PRIVACY POLICY */}
+                    <div className="flex items-start gap-3 pt-2">
+                      <input
+                          type="checkbox"
+                          name="privacyAccepted"
+                          id="privacyAccepted"
+                          required // Validazione nativa HTML5
+                          checked={formData.privacyAccepted}
+                          onChange={handleChange}
+                          className="mt-1 w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer"
+                      />
+                      <label htmlFor="privacyAccepted" className="text-sm text-slate-600 leading-tight">
+                        Ho letto e accetto la <a href="/privacy" target="_blank" className="text-blue-600 hover:text-blue-800 font-medium underline decoration-1 underline-offset-2">Privacy Policy</a> per il trattamento dei miei dati personali. *
+                      </label>
+                    </div>
+
+                    <div className="flex flex-col gap-4">
+                      <button
+                          type="submit"
+                          disabled={formStatus.loading || formStatus.success}
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                      >
+                        {formStatus.loading ? (
+                            <Loader2 className="animate-spin" />
+                        ) : formStatus.success ? (
+                            <> {t('contact.form.success_title')} <CheckCircle2 size={20}/></>
+                        ) : (
+                            <> {t('contact.form.submit')} <Send size={18} /></>
+                        )}
+                      </button>
+
+                      {/* Messaggio Errore */}
+                      {formStatus.error && (
+                          <div className="text-red-600 text-sm text-center bg-red-50 p-3 rounded-lg border border-red-100 font-medium">
+                            {formStatus.error}
+                          </div>
                       )}
-                    </button>
+                    </div>
 
                     <AnimatePresence>
                       {formStatus.success && (
                           <motion.div
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: "auto" }}
-                              className="bg-green-50 text-green-800 p-4 rounded-lg text-sm border border-green-200 flex items-start gap-3"
+                              exit={{ opacity: 0, height: 0 }}
+                              className="bg-green-50 text-green-800 p-4 rounded-lg text-sm border border-green-200 flex items-start gap-3 overflow-hidden"
                           >
                             <CheckCircle2 size={18} className="mt-0.5 flex-shrink-0"/>
                             <div>

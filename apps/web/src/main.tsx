@@ -12,7 +12,6 @@ import Header from './components/Header';
 import Footer from "./components/Footer";
 import ScrollToTop from './components/ScrollToTop';
 
-// PAGINA 404
 // @ts-ignore
 import NotFound from './app/__create/not-found.tsx';
 
@@ -33,6 +32,7 @@ const Layout = () => {
 
 function AppRoutes() {
 
+    // @ts-ignore
     const pages = import.meta.glob('./app/**/page.{jsx,tsx}', { eager: true });
 
     const routes = Object.keys(pages).map((path) => {

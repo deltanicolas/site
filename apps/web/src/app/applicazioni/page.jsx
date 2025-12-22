@@ -1,11 +1,11 @@
 "use client";
 
-import Header from "../../components/Header";
 import {
   ShieldCheck, ArrowRight, Radar, Lock, Zap,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import baseMilitar from "../../images/camionMilitare.jpg"
 
 export default function ApplicazioniPage() {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ export default function ApplicazioniPage() {
   const applications = [
     {
       key: "infra",
-      img: "https://images.unsplash.com/photo-1565514020125-02753229b9f7?auto=format&fit=crop&q=80&w=2070",
+      img: baseMilitar,
     },
     {
       key: "construction",

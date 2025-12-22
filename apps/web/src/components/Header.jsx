@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Menu, X, Globe, ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
+import squareLogo from "../images/SquareLogo.png";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +47,7 @@ export default function Header() {
               <motion.img
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  src="https://ucarecdn.com/0d36fc5b-f9dc-4436-b52a-6e2074fbf859/-/format/auto/"
+                  src={squareLogo}
                   alt="037 Logo"
                   className={`transition-all duration-500 object-contain ${
                       isScrolled ? "h-10" : "h-14"

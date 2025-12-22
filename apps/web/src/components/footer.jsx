@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-
+import horizzontalLogo from "../images/horizzontal_logo.jpg"
 export default function Footer() {
     const { t } = useTranslation();
 
@@ -9,13 +9,16 @@ export default function Footer() {
         <footer className="bg-slate-950 border-t border-slate-800 pt-16 pb-8 text-slate-400 text-sm">
             <div className="container mx-auto px-6">
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
-
-                    {/* Colonna Brand */}
                     <div className="col-span-1 md:col-span-1">
-                        <span className="text-2xl font-black text-white block mb-4">037</span>
+                        {/* LOGO IMMAGINE */}
+                        <img
+                            src={horizzontalLogo}
+                            alt="037 Logo"
+                            className="h-12 mb-4 object-contain"
+                        />
+
                         <p className="text-slate-400">{t('footer.description')}</p>
                     </div>
-
                     {/* Colonna Prodotti */}
                     <div>
                         <h4 className="font-bold text-white mb-4 uppercase text-xs tracking-wider">
@@ -23,18 +26,13 @@ export default function Footer() {
                         </h4>
                         <ul className="space-y-2">
                             <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
+                                <a href="/guardian" className="hover:text-blue-400 transition-colors">
                                     {t('footer.items.guardian')}
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
+                                <a href="/matrix" className="hover:text-blue-400 transition-colors">
                                     Guardian-NRG
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
-                                    {t('footer.items.cloud')}
                                 </a>
                             </li>
                         </ul>
@@ -52,13 +50,8 @@ export default function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
+                                <a href="/contatti" className="hover:text-blue-400 transition-colors">
                                     {t('footer.items.assistance')}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
-                                    {t('footer.items.faq')}
                                 </a>
                             </li>
                         </ul>
@@ -70,7 +63,7 @@ export default function Footer() {
                             {t('footer.col_contacts')}
                         </h4>
                         <ul className="space-y-2 text-slate-400">
-                            <li>info@037.tech</li>
+                            <li>amministrazione@zerotresette.it</li>
                             <li>+39 02 123 4567</li>
                             <li>{t('footer.location')}</li>
                         </ul>

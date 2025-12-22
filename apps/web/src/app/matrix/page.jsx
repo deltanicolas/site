@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "../../components/Header";
 import {
   Sun, BatteryCharging, Zap, Move, Wifi, ShieldCheck,
   ArrowRight, Leaf, Settings, Unplug,
