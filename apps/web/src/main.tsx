@@ -9,14 +9,14 @@ import './app/global.css';
 
 // COMPONENTI
 import Header from './components/Header';
+import Footer from "./components/Footer";
 import ScrollToTop from './components/ScrollToTop';
 
 // PAGINA 404
 // @ts-ignore
 import NotFound from './app/__create/not-found.tsx';
 
-// --- LAYOUT ---
-// Questo layout contiene l'Header. Lo useremo solo per le pagine "normali".
+
 const Layout = () => {
     return (
         <div className="main-wrapper">
@@ -26,13 +26,13 @@ const Layout = () => {
                     <Outlet />
                 </Suspense>
             </div>
+            <Footer />
         </div>
     );
 };
 
 function AppRoutes() {
-    // Generazione automatica rotte
-    // @ts-ignore
+
     const pages = import.meta.glob('./app/**/page.{jsx,tsx}', { eager: true });
 
     const routes = Object.keys(pages).map((path) => {

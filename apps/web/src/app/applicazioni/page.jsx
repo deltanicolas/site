@@ -193,20 +193,7 @@ export default function ApplicazioniPage() {
           </div>
         </section>
 
-        {/* ===================== FOOTER ===================== */}
-        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="font-bold text-white text-lg">037</div>
-            </div>
-            <div className="flex gap-8 font-medium">
-              <a href="/guardian" className="hover:text-white transition-colors">Prodotti</a>
-              <a href="/applicazioni" className="text-white">Applicazioni</a>
-              <a href="/contatti" className="hover:text-white transition-colors">Contatti</a>
-            </div>
-            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
-          </div>
-        </footer>
+
       </div>
   );
 }

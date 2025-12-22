@@ -291,18 +291,6 @@ export default function ContattiPage() {
           </div>
         </section>
 
-        {/* ===================== FOOTER ===================== */}
-        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="font-bold text-white text-lg">037</div>
-            <div className="flex gap-8 font-medium">
-              <a href="/prodotti" className="hover:text-white transition-colors">{t('footer.col_products')}</a>
-              <a href="/chi-siamo" className="hover:text-white transition-colors">{t('header.nav.about')}</a>
-              <a href="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
-            </div>
-            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
-          </div>
-        </footer>
       </div>
   );
 }

@@ -329,48 +329,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        <footer className="bg-white border-t border-slate-200 pt-16 pb-8 text-slate-600 text-sm">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-8 mb-12">
-              <div className="col-span-1 md:col-span-1">
-                <span className="text-2xl font-black text-slate-900 block mb-4">037</span>
-                <p>{t('footer.description')}</p>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-900 mb-4 uppercase text-xs tracking-wider">{t('footer.col_products')}</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="hover:text-blue-600">{t('footer.items.guardian')}</a></li>
-                  <li><a href="#" className="hover:text-blue-600">{t('footer.items.matrix')}</a></li>
-                  <li><a href="#" className="hover:text-blue-600">{t('footer.items.cloud')}</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-900 mb-4 uppercase text-xs tracking-wider">{t('footer.col_support')}</h4>
-                <ul className="space-y-2">
-                  <li><a href="#" className="hover:text-blue-600">{t('footer.items.docs')}</a></li>
-                  <li><a href="#" className="hover:text-blue-600">{t('footer.items.assistance')}</a></li>
-                  <li><a href="#" className="hover:text-blue-600">{t('footer.items.faq')}</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-900 mb-4 uppercase text-xs tracking-wider">{t('footer.col_contacts')}</h4>
-                <ul className="space-y-2">
-                  <li>info@037.tech</li>
-                  <li>+39 02 123 4567</li>
-                  <li>{t('footer.location')}</li>
-                </ul>
-              </div>
-            </div>
-            <div className="border-t border-slate-100 pt-8 flex justify-between items-center text-xs text-slate-400">
-              <p>{t('footer.rights')}</p>
-              <div className="flex gap-4">
-                <a href="#" className="hover:text-slate-600">{t('footer.privacy')}</a>
-                <a href="#" className="hover:text-slate-600">{t('footer.cookies')}</a>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
   );
 }

@@ -177,19 +177,7 @@ export default function ChiSiamoPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-lg">037</span>
-            </div>
-            <div className="flex gap-8 font-medium">
-              <a href="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
-              <a href="/contatti" className="hover:text-white transition-colors">{t('footer.col_contacts')}</a>
-            </div>
-            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
-          </div>
-        </footer>
+
       </div>
   );
 }

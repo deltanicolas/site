@@ -268,20 +268,6 @@ export default function GuardianNRGPage() {
           </div>
         </section>
 
-        <footer className="bg-slate-950 text-slate-500 py-12 border-t border-slate-900 text-sm">
-          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="font-bold text-white text-lg">037</div>
-              <span className="text-xs bg-emerald-900 text-emerald-400 px-2 py-0.5 rounded">NRG Division</span>
-            </div>
-            <div className="flex gap-8 font-medium">
-              <a href="/guardian" className="hover:text-white transition-colors">Guardian</a>
-              <a href="/matrix" className="text-white">Matrix NRG</a>
-              <a href="/contatti" className="hover:text-white transition-colors">{t('footer.col_support')}</a>
-            </div>
-            <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
-          </div>
-        </footer>
       </div>
   );
 }
