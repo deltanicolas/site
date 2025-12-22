@@ -1,4 +1,6 @@
+// @ts-ignore
 import React, { Suspense } from 'react';
+// @ts-ignore
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
@@ -10,6 +12,7 @@ import Header from './components/Header';
 import ScrollToTop from './components/ScrollToTop';
 
 // PAGINA 404
+// @ts-ignore
 import NotFound from './app/__create/not-found.tsx';
 
 // --- LAYOUT ---
@@ -29,6 +32,7 @@ const Layout = () => {
 
 function AppRoutes() {
     // Generazione automatica rotte
+    // @ts-ignore
     const pages = import.meta.glob('./app/**/page.{jsx,tsx}', { eager: true });
 
     const routes = Object.keys(pages).map((path) => {

@@ -3,15 +3,17 @@
 import { useState } from "react";
 import {
   Mail, Phone, MapPin, Send, Loader2,
-  CheckCircle2, Building2, Globe, Users,
-  Briefcase, Wrench, FileText, ArrowRight
+  CheckCircle2, Globe, Users,
+  Briefcase, Wrench, ArrowRight
 } from "lucide-react";
 import Header from "../../components/Header";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function ContattiPage() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    department: "sales", // Default a sales
+    department: "sales",
     name: "",
     company: "",
     email: "",
@@ -55,16 +57,16 @@ export default function ContattiPage() {
           <div className="container mx-auto px-6 lg:px-12 relative z-10 text-center">
             <motion.div initial="hidden" animate="visible" variants={fadeIn} className="max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Come possiamo <span className="text-blue-500">aiutarti?</span>
+                {t('contact.hero.title')} <span className="text-blue-500">{t('contact.hero.title_accent')}</span>
               </h1>
               <p className="text-xl text-slate-300 font-light leading-relaxed">
-                Seleziona l'area di tuo interesse per metterti in contatto con il team giusto.
+                {t('contact.hero.desc')}
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* ===================== 2. ROUTING CARDS (Axis/Dahua Style) ===================== */}
+        {/* ===================== 2. ROUTING CARDS ===================== */}
         <section className="relative -mt-12 z-20 pb-12">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid md:grid-cols-3 gap-6">
@@ -75,12 +77,12 @@ export default function ContattiPage() {
                 <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <Briefcase size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Ufficio Commerciale</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{t('contact.cards.sales.title')}</h3>
                 <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-                  Richiesta preventivi, informazioni sui prodotti, noleggio e progetti personalizzati.
+                  {t('contact.cards.sales.desc')}
                 </p>
                 <span className="text-blue-600 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
-                Contatta Vendite <ArrowRight size={16}/>
+                  {t('contact.cards.sales.link')} <ArrowRight size={16}/>
               </span>
               </div>
 
@@ -89,12 +91,12 @@ export default function ContattiPage() {
                 <div className="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-600 mb-6 group-hover:bg-slate-600 group-hover:text-white transition-colors">
                   <Wrench size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Supporto Tecnico</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{t('contact.cards.support.title')}</h3>
                 <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-                  Assistenza post-vendita, documentazione tecnica, RMA e manualistica.
+                  {t('contact.cards.support.desc')}
                 </p>
                 <a href="mailto:support@037.tech" className="text-slate-600 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all group-hover:text-blue-600">
-                  Apri Ticket <ArrowRight size={16}/>
+                  {t('contact.cards.support.link')} <ArrowRight size={16}/>
                 </a>
               </div>
 
@@ -103,12 +105,12 @@ export default function ContattiPage() {
                 <div className="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-900 mb-6 group-hover:bg-slate-900 group-hover:text-white transition-colors">
                   <Users size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Partner & Distributori</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{t('contact.cards.partner.title')}</h3>
                 <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-                  Vuoi diventare un installatore certificato 037 o distribuire i nostri prodotti?
+                  {t('contact.cards.partner.desc')}
                 </p>
                 <a href="mailto:partners@037.tech" className="text-slate-900 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all group-hover:text-blue-600">
-                  Diventa Partner <ArrowRight size={16}/>
+                  {t('contact.cards.partner.link')} <ArrowRight size={16}/>
                 </a>
               </div>
 
@@ -121,17 +123,17 @@ export default function ContattiPage() {
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid lg:grid-cols-12 gap-16">
 
-              {/* Left: Quick Info & Offices */}
+              {/* Left: Quick Info */}
               <div className="lg:col-span-5 space-y-10">
                 <div>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-4">Mettiti in contatto</h2>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-4">{t('contact.form.title')}</h2>
                   <p className="text-slate-500 leading-relaxed">
-                    Compila il modulo per essere ricontattato dal dipartimento di competenza. I nostri uffici sono aperti dal Lunedì al Venerdì, 09:00 - 18:00.
+                    {t('contact.form.desc')}
                   </p>
                 </div>
 
                 <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                  <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Headquarters</h4>
+                  <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">{t('contact.form.offices')}</h4>
                   <div className="flex items-start gap-4 mb-6">
                     <MapPin className="text-blue-600 mt-1 flex-shrink-0" />
                     <div>
@@ -149,7 +151,7 @@ export default function ContattiPage() {
                   </div>
                 </div>
 
-                {/* Global Presence Mini Map Concept */}
+                {/* Map */}
                 <div className="relative rounded-2xl overflow-hidden h-48 bg-slate-900">
                   <img
                       src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000"
@@ -158,8 +160,7 @@ export default function ContattiPage() {
                   />
                   <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
                     <Globe className="text-blue-400 mb-2" size={32}/>
-                    <h4 className="text-white font-bold">Operatività Globale</h4>
-                    <p className="text-slate-300 text-xs mt-1">Spedizioni e supporto in tutta Europa e Medio Oriente.</p>
+                    <h4 className="text-white font-bold">{t('contact.form.global_map')}</h4>
                   </div>
                 </div>
               </div>
@@ -169,9 +170,8 @@ export default function ContattiPage() {
                 <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100">
                   <form onSubmit={handleSubmit} className="space-y-6">
 
-                    {/* Department Selector - KEY for Enterprise sites */}
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700">Vorrei contattare...</label>
+                      <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.dept')}</label>
                       <div className="relative">
                         <select
                             name="department"
@@ -179,10 +179,10 @@ export default function ContattiPage() {
                             onChange={handleChange}
                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-900 font-medium"
                         >
-                          <option value="sales">Ufficio Commerciale (Vendite/Noleggio)</option>
-                          <option value="support">Supporto Tecnico</option>
-                          <option value="marketing">Marketing & Stampa</option>
-                          <option value="partners">Partnership & Distribuzione</option>
+                          <option value="sales">{t('contact.form.options.sales')}</option>
+                          <option value="support">{t('contact.form.options.support')}</option>
+                          <option value="marketing">{t('contact.form.options.marketing')}</option>
+                          <option value="partners">{t('contact.form.options.partners')}</option>
                         </select>
                         <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
                           <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
@@ -192,7 +192,7 @@ export default function ContattiPage() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-700">Nome Completo *</label>
+                        <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.name')} *</label>
                         <input
                             type="text"
                             name="name"
@@ -200,25 +200,23 @@ export default function ContattiPage() {
                             value={formData.name}
                             onChange={handleChange}
                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-                            placeholder="Nome e Cognome"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-700">Azienda / Ente</label>
+                        <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.company')}</label>
                         <input
                             type="text"
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-                            placeholder="Es. Comune di Milano, Edilizia Spa..."
                         />
                       </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-700">Email Lavorativa *</label>
+                        <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.email')} *</label>
                         <input
                             type="email"
                             name="email"
@@ -226,24 +224,22 @@ export default function ContattiPage() {
                             value={formData.email}
                             onChange={handleChange}
                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-                            placeholder="nome@azienda.com"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-700">Telefono</label>
+                        <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.phone')}</label>
                         <input
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-                            placeholder="+39..."
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700">Messaggio *</label>
+                      <label className="text-sm font-bold text-slate-700">{t('contact.form.labels.message')} *</label>
                       <textarea
                           name="message"
                           required
@@ -251,7 +247,6 @@ export default function ContattiPage() {
                           value={formData.message}
                           onChange={handleChange}
                           className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none"
-                          placeholder="Come possiamo supportare il tuo progetto?"
                       />
                     </div>
 
@@ -263,9 +258,9 @@ export default function ContattiPage() {
                       {formStatus.loading ? (
                           <Loader2 className="animate-spin" />
                       ) : formStatus.success ? (
-                          <>Richiesta Inviata <CheckCircle2 size={20}/></>
+                          <> {t('contact.form.success_title')} <CheckCircle2 size={20}/></>
                       ) : (
-                          <>Invia Messaggio <Send size={18} /></>
+                          <> {t('contact.form.submit')} <Send size={18} /></>
                       )}
                     </button>
 
@@ -278,15 +273,15 @@ export default function ContattiPage() {
                           >
                             <CheckCircle2 size={18} className="mt-0.5 flex-shrink-0"/>
                             <div>
-                              <strong>Grazie per averci contattato.</strong>
-                              <p>La tua richiesta è stata inoltrata al dipartimento {formData.department === 'sales' ? 'Commerciale' : formData.department === 'support' ? 'Tecnico' : 'competente'}. Risponderemo entro 24h.</p>
+                              <strong>{t('contact.form.success_title')}</strong>
+                              <p>{t('contact.form.success_msg')}</p>
                             </div>
                           </motion.div>
                       )}
                     </AnimatePresence>
 
                     <p className="text-xs text-slate-400 text-center">
-                      037 Technology si impegna a proteggere la tua privacy. Usiamo le informazioni fornite solo per rispondere alla tua richiesta.
+                      {t('contact.form.privacy')}
                     </p>
                   </form>
                 </div>
@@ -301,9 +296,9 @@ export default function ContattiPage() {
           <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="font-bold text-white text-lg">037</div>
             <div className="flex gap-8 font-medium">
-              <a href="/prodotti" className="hover:text-white transition-colors">Prodotti</a>
-              <a href="/chi-siamo" className="hover:text-white transition-colors">Azienda</a>
-              <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
+              <a href="/prodotti" className="hover:text-white transition-colors">{t('footer.col_products')}</a>
+              <a href="/chi-siamo" className="hover:text-white transition-colors">{t('header.nav.about')}</a>
+              <a href="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
             </div>
             <div className="text-xs">&copy; {new Date().getFullYear()} 037 Technology.</div>
           </div>

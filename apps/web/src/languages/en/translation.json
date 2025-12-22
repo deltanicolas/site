@@ -1,150 +1,340 @@
 {
+  "common": {
+    "cta": {
+      "contact": "Contact Us",
+      "contact_expert": "Contact an Expert",
+      "read_more": "Read More",
+      "download_pdf": "Download PDF",
+      "request_quote": "Request Quote",
+      "request_demo": "Request Demo",
+      "configure": "Configure",
+      "view_catalog": "View Catalog"
+    },
+    "status": {
+      "system_status": "System_Status",
+      "active_node": "Active_Node",
+      "secure_connection": "Secure Connection Established",
+      "change_lang": "Change Language"
+    }
+  },
+  "header": {
+    "nav": {
+      "about": "About Us",
+      "guardian": "Guardian X-TEN",
+      "matrix": "Guardian NRG",
+      "applications": "Applications",
+      "contact": "Contact Area"
+    }
+  },
   "home": {
     "hero": {
-      "title": "037 Technology & Security",
-      "subtitle": "Over thirty years of experience in innovation\nserving security",
-      "ctaMore": "Learn more",
-      "ctaContact": "Contact us"
+      "badge": "Advanced Systems Integration",
+      "title_line1": "INTEGRATION",
+      "title_line2": "WITHOUT COMPROMISE.",
+      "description": "Mobile security solutions engineered for critical scenarios. We combine top-tier hardware and advanced power management into a single operating ecosystem.",
+      "cta_explore": "Explore Solutions",
+      "cta_contact": "Contact an Expert"
     },
-    "about": {
-      "title": "About Us",
-      "text": "Over twenty years of experience in the security sector, continuous research into innovative materials and solutions, and a strong commitment to territorial analysis and control: these are the foundations of 037 Technology & Security.",
-      "link": "Read our story"
+    "stats": {
+      "ip67": "Industrial Standard",
+      "uptime": "Operational Continuity",
+      "hybrid": "Power Management",
+      "cloud": "Remote Monitoring"
     },
-    "solutions": {
-      "title": "Our Solutions",
-      "guardian": {
-        "title": "GUARDIAN X-TEN",
-        "description": "Mobile technological station with telescopic mast up to 13m high. Equipped with intelligent thermal cameras, radar and advanced lighting systems.",
-        "features": {
-          "radar": "Integrated Radar",
-          "thermal": "Thermal Vision",
-          "power": "Self-powered",
-          "height": "13m Height"
-        },
-        "link": "Discover Guardian X-TEN"
+    "ecosystem": {
+      "header": {
+        "title": "Technological Ecosystem",
+        "subtitle": "A complete suite of hardware and software designed to work in perfect synergy.",
+        "link": "View Full Catalog"
       },
-      "nrg": {
-        "title": "GUARDIAN NRG",
-        "description": "Habitable 20ft./40ft. shelter control center. Coordinates multi-Guardian systems to extend surveillance coverage with a single operator.",
-        "points": {
-          "one": "Centralized multi-Guardian control",
-          "two": "Habitable 20ft./40ft. shelter",
-          "three": "Single-operator management"
+      "cards": {
+        "guardian": {
+          "badge": "Flagship",
+          "title": "Guardian Series",
+          "desc": "Rapid deployment mobile video surveillance towers. Security everywhere, in 15 minutes.",
+          "cta": "Configure Guardian"
         },
-        "link": "Discover Guardian NRG"
+        "matrix": {
+          "title": "Matrix NRG",
+          "desc": "Intelligent hybrid generators. Fuel-cell and solar for total off-grid energy independence.",
+          "cta": "Discover Power Unit"
+        },
+        "software": {
+          "title": "Cloud Control",
+          "desc": "Centralized dashboard for fleet management and video alarms."
+        },
+        "tech": {
+          "badge": "Multi-Sensor Fusion",
+          "title": "Predictive Analytics",
+          "desc": "We integrate radar, thermal, and AI video analysis to eliminate false alarms.",
+          "link": "Deep Dive Technology"
+        }
+      }
+    },
+    "value_prop": {
+      "subtitle": "System Engineering",
+      "title_main": "Certified Quality.",
+      "title_accent": "Absolute Performance.",
+      "description": "We don't just supply components. 037 <strong>designs the architecture</strong> that makes the best global technologies communicate.",
+      "feature_hw": {
+        "title": "Custom Hardware Integration",
+        "desc": "Reinforced chassis, industrial cabling, and selected components."
+      },
+      "feature_sw": {
+        "title": "Software Optimization",
+        "desc": "Algorithms calibrated to reduce data consumption while maintaining maximum resolution."
+      },
+      "stats": {
+        "false_alarms": "Reduction in False Alarms",
+        "compliance": "Data Servers & Compliancy"
       }
     },
     "applications": {
-      "title": "Applications",
-      "civil": {
-        "title": "Civil",
-        "text": "Protection of critical infrastructures, industrial sites, public events and sensitive areas."
-      },
-      "military": {
-        "title": "Military",
-        "text": "Protection of operational bases, conflict zones and tactical missions."
-      },
-      "link": "View all details"
+      "title": "Field Applications",
+      "subtitle": "Versatile technology for every vertical sector.",
+      "items": {
+        "construction": "Construction Sites",
+        "events": "Public Events",
+        "logistics": "Logistics & Areas",
+        "utilities": "Utilities & Energy"
+      }
     },
-    "cta": {
-      "title": "Ready to protect your territory?",
-      "text": "Contact us for a personalized consultation and discover how our solutions can ensure maximum security for your needs.",
-      "button": "Contact Us Now"
-    },
-    "footer": {
-      "tagline": "Leaders in perimeter security innovation",
-      "quickLinks": "Quick Links",
-      "contacts": "Contacts",
-      "rights": "All rights reserved."
-    },
-    "header": {
-      "about": "About us",
-      "application": "Application",
-      "contact": "Contact us"
+    "cta_section": {
+      "title": "Ready to secure your project?",
+      "description": "Our technicians will analyze your site plan to propose the optimal configuration.",
+      "btn_consult": "Request Consultation",
+      "btn_call": "Call Us Now"
     }
   },
-  "about": {
-    "heroTitle": "About Us",
-    "heroSubtitle": "Over twenty years of innovation in security",
-
-    "p1": "Over twenty years of experience in the security sector, continuous research into innovative materials and solutions, and a strong commitment to territorial analysis and control form the foundations of 037 Technology and Security.",
-    "p2": "Research-driven technologies are at the core of Guardian, a patented and unique solution: powered or self-powered devices that are dynamic, flexible, and fully autonomous, produced in two versions: Guardian and Guardian X-Ten.",
-    "p3": "Today, 037 Technology and Security stands among the global leaders in the development of bespoke projects for high-profile clients, delivering innovative technical solutions that redefine the standards of perimeter security.",
-
-    "valuesTitle": "Our Values",
-
-    "experienceTitle": "Experience",
-    "experienceText": "Over twenty years in the security sector allow us to deliver proven and reliable solutions.",
-
-    "innovationTitle": "Innovation",
-    "innovationText": "Continuous research into cutting-edge materials and technologies for increasingly effective solutions.",
-
-    "reliabilityTitle": "Reliability",
-    "reliabilityText": "Patented and field-tested systems ensuring maximum security in every operational condition.",
-
-    "ctaTitle": "Discover Our Solutions",
-    "ctaText": "Explore Guardian and Matrix, our patented technologies for perimeter security.",
-    "ctaGuardian": "Discover Guardian",
-    "ctaMatrix": "Discover Matrix"
+  "matrix": {
+    "hero": {
+      "badge": "Graphene Technology",
+      "description": "The ultimate mobile power unit. <strong>Graphene</strong> accumulators for superior performance in extreme climates and ultra-fast charging.",
+      "efficiency_badge": "Efficiency +40% vs Lithium"
+    },
+    "features": {
+      "solar": { "title": "Solar Array", "desc": "High-efficiency monocrystalline panels with rapid deployment mechanism." },
+      "graphene": { "title": "Graphene Core", "desc": "New Graphene technology: 5x faster charging and superior energy density." },
+      "bms": { "title": "Smart BMS", "desc": "Intelligent load management with selective shutdown of non-critical peripherals." },
+      "offgrid": { "title": "100% Off-Grid", "desc": "Total independence from the power grid. No cables, no noisy diesel generators." },
+      "telemetry": { "title": "Remote Telemetry", "desc": "Real-time monitoring of voltage, consumption, and charge status via Cloud." },
+      "emissions": { "title": "Zero Emission", "desc": "Silent and environmentally friendly operation. Ideal for parks and residential areas." },
+      "armor": { "title": "Armored Shell", "desc": "Vandal-proof reinforced steel chassis to protect the energy bank." },
+      "trailer": { "title": "Compact Trailer", "desc": "Compact design towable with standard license. Positioning in tight spaces." }
+    },
+    "deep_dive": {
+      "badge": "Advanced Materials",
+      "title": "The Graphene Revolution.",
+      "desc_1": "We pushed past the limits of traditional lithium. Guardian NRG integrates aerospace-grade <strong>Graphene-Polymer</strong> accumulators.",
+      "desc_2": "This technology allows unprecedented thermal and electrical conductivity.",
+      "point_1_title": "Extended Range",
+      "point_1_desc": "Guaranteed operation from -30°C to +65°C without degradation.",
+      "point_2_title": "Flash Charge",
+      "point_2_desc": "Absorbs solar energy 3 times faster than standard cells.",
+      "safe_badge": "Safe (No Fire)"
+    },
+    "steps": {
+      "title": "Rapid Deployment",
+      "subtitle": "From delivery to operation in 3 simple steps.",
+      "s1": { "title": "Positioning", "desc": "Towable with standard hook. Hydraulic stabilization." },
+      "s2": { "title": "Solar Unfolding", "desc": "Panels unfold and orient for maximum exposure." },
+      "s3": { "title": "Power On", "desc": "System starts inverter and provides stable 230V/24V." }
+    },
+    "datasheet": {
+      "title": "NRG Tech Specs",
+      "col1_title": "Electrical Output",
+      "col2_title": "Generation & Storage"
+    },
+    "cta": {
+      "title": "Energy everywhere. No compromises.",
+      "desc": "Eliminate fuel costs and fire risks. Switch to Guardian NRG graphene technology."
+    }
   },
   "guardian": {
     "hero": {
-      "title": "GUARDIAN",
-      "subtitle": "Patented mobile technology station for perimeter security of large areas",
-      "cta": "Request Information"
-    },
-    "description": {
-      "p1": "Guardian is a mobile technology station with its own power and connectivity, compact and inaccessible, with a telescopic column that can reach 13 meters high in seconds.",
-      "p2": "On top are ready-to-use intelligent thermal cameras, radar, and LED lights that allow to see, sense, and record information for local and remote intelligence, and to rationalize and transmit data to multiple security sectors (Dual Use Technologies).",
-      "p3": "Guardian is a patented and fully integrated technological innovation for perimeter security of large areas providing ready-to-use surveillance capabilities."
+      "badge": "Gen 4.0 Available",
+      "description": "The definitive mobile tower. Deployment in 15 minutes, on-board AI, and autonomous power supply.",
+      "tech_badge_label": "Max Height",
+      "tech_badge_value": "13.0 Meters"
     },
     "features": {
-      "Title": "Technical features",
-      "Radar Integrato": "Advanced radar system for 360° perimeter detection",
-      "Visione Termica": "Intelligent thermal cameras for night vision and anomaly detection",
-      "Autoalimentato": "Autonomous power system with solar panels and high-capacity batteries",
-      "Altezza 13 metri": "Telescopic column that reaches 13m high in a few seconds",
-      "Connettività Propria": "Independent communication system for real-time data transmission",
-      "Dual Use Technologies": "Data storage and rationalization for local and remote intelligence",
-      "Illuminazione LED": "High-power LED lights for complete perimeter illumination",
-      "Compatto e Inaccessibile": "Protected and inaccessible base, resistant to tampering and extreme conditions"
+      "radar": { "title": "Integrated 3D Radar", "desc": "Advanced volumetric detection with human/vehicle target classification." },
+      "optics": { "title": "Thermal & Optical", "desc": "Dual spectrum visual for guaranteed operation even in total darkness." },
+      "power": { "title": "Hybrid Power", "desc": "Extended autonomy thanks to the hybrid battery/solar/fuel-cell system." },
+      "mast": { "title": "13 Meter Mast", "desc": "Hydraulic telescopic mast for a panoramic view with no blind spots." },
+      "conn": { "title": "4G/LTE/Sat", "desc": "Connection redundancy to ensure alarm transmission everywhere." },
+      "ai": { "title": "AI On-Edge", "desc": "Video analysis on board camera to reduce bandwidth and latency." },
+      "deterrence": { "title": "Active Deterrence", "desc": "Strobe lights and loudspeakers activated automatically by intrusion." },
+      "tamper": { "title": "Anti-Tamper", "desc": "Armored chassis and anti-tamper sensors with hidden GPS tracker." }
     },
-    "versions": {
-      "Title": "Available Versions",
-      "guardian": {
-        "title": "GUARDIAN",
-        "description": "Standard version with external power supply. Ideal for permanent or semi-permanent installations with access to electricity.",
-        "features": ["Electric network power supply", "13m telescopic column", "Complete surveillance system"]
+    "deep_dive": {
+      "badge": "Optical Technology",
+      "title": "See the invisible.",
+      "desc": "The heart of the Guardian system is the proprietary optical head. We combine 4K Sony Starvis™ sensors with radiometric thermal cameras.",
+      "card_badge": "Multispectral Fusion",
+      "card_desc": "Simultaneous combination of visible and thermal spectrum for zero false alarms.",
+      "p1_title": "AI Classification",
+      "p1_desc": "System automatically distinguishes between people, vehicles, and animals.",
+      "p2_title": "Active Deterrence",
+      "p2_desc": "Audio speakers and strobes activate only when threat is confirmed."
+    },
+    "comparison": {
+      "title": "Available Configurations",
+      "subtitle": "Choose the protection level suitable for your operational scenario.",
+      "base": {
+        "badge": "Urban Entry",
+        "title": "Guardian Base",
+        "desc": "Perfect for urban sites, events, and areas with partial lighting.",
+        "p1": "Mast Height", "v1": "7 Meters (Manual)",
+        "p2": "Autonomy", "v2": "48h (AGM Batteries)",
+        "p3": "Sensors", "v3": "2x Bullet 4MP"
       },
-      "guardian_x_ten": {
-        "title": "GUARDIAN X-TEN",
-        "description": "Fully autonomous self-powered version. Perfect for remote areas, temporary missions, and situations without energy infrastructure.",
-        "features": ["Integrated solar panels", "High-capacity batteries", "Extended autonomy", "Quick installation"]
+      "xten": {
+        "badge": "Pro Series",
+        "title": "Guardian X-TEN",
+        "desc": "The choice for critical infrastructure, remote areas, and perimeter defense.",
+        "p1": "Mast Height", "v1": "13 Meters (Hydraulic)",
+        "p2": "Autonomy", "v2": "Infinite (Hybrid+Solar)",
+        "p3": "Sensors", "v3": "Thermal + Radar + PTZ"
       }
+    },
+    "datasheet": {
+      "title": "Technical Specifications",
+      "subtitle": "Data refers to Guardian X-TEN v4.0 model",
+      "col1": "Mechanical",
+      "col2": "Electronics"
     },
     "cta": {
-      "title": "Discover how Guardian can protect your areas",
-      "subtitle": "Contact us for a personalized consultation and to learn all technical specifications.",
-      "buttons": {
-        "consult": "Request Consultation",
-        "matrix": "Discover Matrix"
-      }
+      "title": "Immediate security, everywhere.",
+      "desc": "Available for Long Term Rental or Direct Sale. Delivery across Europe in 48 hours."
     }
-
+  },
+  "applications_page": {
+    "hero": {
+      "badge": "Operational Scenarios",
+      "title_line1": "Protecting every",
+      "title_line2": "critical environment.",
+      "desc": "037 solutions are modular and scalable. Designed to adapt to specific Civil, Industrial, and Defense needs."
+    },
+    "civil": {
+      "title": "Civil & Industrial Sector",
+      "desc": "Active security for business continuity and asset protection.",
+      "link": "Talk to a sector expert",
+      "items": {
+        "infra": { "cat": "Critical Infrastructure", "desc": "Perimeter protection for power plants and telecom nodes.", "f1": "Intrusion detection", "f2": "24h Thermal", "f3": "SCADA Integration" },
+        "construction": { "cat": "Construction Sites", "desc": "Work progress monitoring (SAL) and theft prevention.", "f1": "4K Time-lapse", "f2": "Active deterrence", "f3": "Access control" },
+        "logistics": { "cat": "Logistics & Transport", "desc": "Security for cargo storage areas, ports, and interports.", "f1": "LPR (License Plate)", "f2": "Flow tracking", "f3": "Anti-climb" },
+        "events": { "cat": "Major Events", "desc": "Crowd management and public safety for concerts and fairs.", "f1": "People counting", "f2": "Density analysis", "f3": "Rapid deploy" }
+      }
+    },
+    "defense": {
+      "title": "Defense & Gov.",
+      "desc": "<strong>Dual-Use</strong> solutions engineered to operate in non-permissive theaters. MIL-STD compliant.",
+      "link": "Restricted Area Access",
+      "items": {
+        "force": { "title": "Force Protection", "desc": "Perimeter defense of Forward Operating Bases (FOB)." },
+        "border": { "title": "Border Control", "desc": "Long-range border surveillance with radar and thermal." },
+        "rapid": { "title": "Rapid Response", "desc": "Autonomous heli-transportable units for immediate crisis scenarios." },
+        "asset": { "title": "Asset Defense", "desc": "Protection of ammunition depots and strategic hangars." }
+      }
+    },
+    "quote": {
+      "text": "Everyone has the right to life, liberty and security of person.",
+      "author": "Universal Declaration of Human Rights, Art. 3"
+    },
+    "cta": {
+      "title": "Custom projects?",
+      "desc": "Our engineering team analyzes your site plan and criticalities.",
+      "btn": "Request Feasibility Study"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "System Integrator",
+      "title_line1": "Ideation &",
+      "title_line2": "Assembly.",
+      "desc": "We are not just a reseller. 037 selects the best global technologies and integrates them into unique solutions.",
+      "btn": "Our Method"
+    },
+    "method": {
+      "title": "From Concept to Reality",
+      "desc": "Our added value lies in the ability to unite heterogeneous components into an organic system.",
+      "step1": { "title": "1. Ideation", "desc": "We analyze the operational scenario and design the ideal configuration." },
+      "step2": { "title": "2. Assembly", "desc": "We integrate hardware components into our chassis, handling cabling and power." },
+      "step3": { "title": "3. Configuration", "desc": "We program software and calibrate video analysis systems." }
+    },
+    "philosophy": {
+      "badge": "Philosophy",
+      "card_badge": "Hardware Agnostic",
+      "card_desc": "We are not tied to a single brand. We choose only the best for your project.",
+      "title": "The art of integration.",
+      "desc": "Creating a complex security system requires more than the sum of its parts. It requires deep knowledge of how each sensor communicates with others."
+    },
+    "sectors": {
+      "title": "Intervention Sectors",
+      "subtitle": "Our integrations find application where reliability is critical.",
+      "s1": "Complex Sites",
+      "s2": "Public Events",
+      "s3": "Industrial Areas",
+      "s4": "Port Logistics"
+    },
+    "cta": {
+      "title": "We build your solution.",
+      "desc": "Do you have a specific need requiring custom assembly? Let's talk."
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "How can we",
+      "title_accent": "help you?",
+      "desc": "Select your area of interest to get in touch with the right team."
+    },
+    "cards": {
+      "sales": { "title": "Sales Department", "desc": "Quote requests, product info, and rental.", "link": "Contact Sales" },
+      "support": { "title": "Technical Support", "desc": "After-sales assistance, technical documentation, and RMA.", "link": "Open Ticket" },
+      "partner": { "title": "Partners & Distributors", "desc": "Want to become a certified 037 installer?", "link": "Become a Partner" }
+    },
+    "form": {
+      "title": "Get in touch",
+      "desc": "Fill out the form to be contacted. Offices open Mon-Fri 09:00 - 18:00.",
+      "offices": "Headquarters",
+      "global_map": "Global Operations",
+      "labels": {
+        "dept": "I would like to contact...",
+        "name": "Full Name",
+        "company": "Company / Entity",
+        "email": "Work Email",
+        "phone": "Phone",
+        "message": "Message"
+      },
+      "options": {
+        "sales": "Sales Office",
+        "support": "Technical Support",
+        "marketing": "Marketing & Press",
+        "partners": "Partnerships & Distribution"
+      },
+      "submit": "Send Message",
+      "success_title": "Thanks for contacting us.",
+      "success_msg": "Your request has been forwarded. We will reply within 24h.",
+      "privacy": "037 Technology is committed to protecting your privacy."
+    }
   },
   "footer": {
-    "rapid link": {
-      "title": "Rapid Link",
-      "about": "About us",
-      "application": "Application",
-      "contact": "Contact us"
+    "description": "Integrated technology for mobile and temporary security.",
+    "col_products": "Products",
+    "col_support": "Support",
+    "col_contacts": "Contacts",
+    "items": {
+      "guardian": "Guardian Tower",
+      "matrix": "Matrix Power",
+      "cloud": "037 Cloud",
+      "docs": "Documentation",
+      "assistance": "Tech Support",
+      "faq": "FAQ"
     },
-    "contact": {
-      "title": "Contact",
-      "italy": "Italy"
-    },
-    "company": "Leader in perimeter security innovation",
-    "rights": "All rights reserved."
+    "location": "Bergamo, Italy",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "rights": "© 2024 037 Tecnologia Srl. VAT 12345678901"
   }
 }

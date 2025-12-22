@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // <--- IMPORTANTE: Importiamo Link
+import { Link } from "react-router-dom";
 import { Menu, X, Globe, ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,10 +24,10 @@ export default function Header() {
   };
 
   const navLinks = [
-    { href: "/chi-siamo", label: t("home.header.about") },
-    { href: "/guardian", label: "Guardian X-TEN" },
-    { href: "/matrix", label: "Guardian NRG" },
-    { href: "/applicazioni", label: t("home.header.application") },
+    { href: "/chi-siamo", label: t("header.nav.about") },
+    { href: "/guardian", label: t("header.nav.guardian") },
+    { href: "/matrix", label: t("header.nav.matrix") },
+    { href: "/applicazioni", label: t("header.nav.applications") },
   ];
 
   return (
@@ -42,7 +42,6 @@ export default function Header() {
           <div className="container mx-auto px-6 flex items-center justify-between">
 
             {/* --- LOGO AREA --- */}
-            {/* Usa Link invece di a */}
             <Link to="/" className="relative flex items-center group">
               <motion.img
                   initial={{ opacity: 0 }}
@@ -53,12 +52,15 @@ export default function Header() {
                       isScrolled ? "h-10" : "h-14"
                   }`}
               />
-              {/* Status Indicator (Effetto Software) */}
               <div className="ml-4 hidden sm:flex flex-col border-l border-white/20 pl-4">
-                <span className="text-[10px] font-mono text-blue-400 uppercase tracking-tighter leading-none mb-1">System_Status</span>
+                <span className="text-[10px] font-mono text-blue-400 uppercase tracking-tighter leading-none mb-1">
+                    {t('common.status.system_status')}
+                </span>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Active_Node</span>
+                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+                      {t('common.status.active_node')}
+                  </span>
                 </div>
               </div>
             </Link>
@@ -68,7 +70,7 @@ export default function Header() {
               {navLinks.map((link) => (
                   <Link
                       key={link.href}
-                      to={link.href} // Usa to invece di href
+                      to={link.href}
                       className="relative px-5 py-2 text-sm font-bold text-white/70 uppercase tracking-widest transition-all hover:text-white group"
                   >
                     {link.label}
@@ -77,9 +79,8 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* --- ACTIONS (Language & CTA) --- */}
+            {/* --- ACTIONS --- */}
             <div className="hidden lg:flex items-center gap-6">
-              {/* Language Switcher */}
               <button
                   onClick={toggleLanguage}
                   className="flex items-center gap-2 text-[11px] font-black text-white/50 hover:text-blue-400 transition-colors border border-white/10 px-3 py-1.5 rounded-md bg-white/5"
@@ -88,13 +89,12 @@ export default function Header() {
                 {i18n.language.toUpperCase()}
               </button>
 
-              {/* CTA Button */}
               <Link
-                  to="/contatti" // Usa to invece di href
+                  to="/contatti"
                   className="group relative flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black uppercase tracking-widest px-6 py-3 rounded-lg transition-all shadow-lg shadow-blue-900/20 active:scale-95"
               >
                 <ShieldCheck size={16} className="group-hover:rotate-12 transition-transform" />
-                {t("home.header.contact")}
+                {t("header.nav.contact")}
               </Link>
             </div>
 
@@ -108,7 +108,7 @@ export default function Header() {
           </div>
         </header>
 
-        {/* --- MOBILE OVERLAY (FULL SCREEN) --- */}
+        {/* --- MOBILE OVERLAY --- */}
         <AnimatePresence>
           {mobileMenuOpen && (
               <motion.div
@@ -118,12 +118,10 @@ export default function Header() {
                   transition={{ type: "spring", damping: 25, stiffness: 200 }}
                   className="fixed inset-0 z-[90] bg-slate-950 flex flex-col p-8 pt-32 lg:hidden"
               >
-                {/* Background Decor */}
                 <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
                 <nav className="relative z-10 flex flex-col gap-6">
                   {navLinks.map((link, idx) => (
-                      // Wrapper motion per l'animazione d'entrata
                       <motion.div
                           key={link.href}
                           initial={{ opacity: 0, x: 20 }}
@@ -140,7 +138,6 @@ export default function Header() {
                       </motion.div>
                   ))}
 
-                  {/* Link Contatti Mobile */}
                   <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -151,7 +148,7 @@ export default function Header() {
                         onClick={() => setMobileMenuOpen(false)}
                         className="text-4xl font-black text-blue-500 uppercase italic tracking-tighter block"
                     >
-                      {t("home.header.contact")}
+                      {t("header.nav.contact")}
                     </Link>
                   </motion.div>
                 </nav>
@@ -162,11 +159,11 @@ export default function Header() {
                       onClick={toggleLanguage}
                       className="flex items-center justify-between text-white font-bold uppercase tracking-widest text-sm"
                   >
-                    <span className="opacity-50 underline">Cambia Lingua</span>
+                    <span className="opacity-50 underline">{t('common.status.change_lang')}</span>
                     <span className="bg-blue-600 px-4 py-2 rounded-lg">{i18n.language === "it" ? "English" : "Italiano"}</span>
                   </button>
                   <div className="text-[10px] text-slate-500 font-mono uppercase tracking-[0.2em]">
-                    Secure_Connection: Established <br />
+                    {t('common.status.secure_connection')} <br />
                     Node_ID: 037_Main_Server
                   </div>
                 </div>
